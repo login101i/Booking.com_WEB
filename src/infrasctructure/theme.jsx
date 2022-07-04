@@ -28,6 +28,7 @@ export const colors = {
 	twitterColor: "#1DA1F2",
 	allegroBackground: "#ECEFF1",
 	textColor: `rgb(78, 75, 75)`,
+    blueHover:"#1A4A8D",
 
 	brand: {
 		primary: "#2182BD",
@@ -48,7 +49,7 @@ export const colors = {
 		secondary: "#F1F1F1"
 	},
 	text: {
-		primary: "#262626",
+		primary: "white",
 		secondary: "#757575",
 		disabled: "#9C9C9C",
 		inverse: "#FFFFFF",
@@ -98,4 +99,3 @@ export const appTheme = {
 	lineHeights,
 	space
 };
-

@@ -8,37 +8,32 @@ import { Button, Flex, Text, CustomIcon } from "../sharedComponents";
 const MainContainer = styled.div`
 	width: 100%;
 	height: 70px;
-	background-color: ${({ theme }) => theme.colors.primary};
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	margin-left: 80px;
+	max-width: 1120px;
 `;
 
 const Container = styled.div`
-	max-width: 1024px;
 	width: 100%;
-	border: 2px solid green;
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
 `;
 const LogoContainer = styled.div`
 	width: 200px;
 `;
-const Logo = styled.div`
-	font-size: 33px;
-	color: ${({ theme }) => theme.colors.white};
+
+const ButtonsContainer = styled.div`
+	width: 800px;
 `;
 
-const ButtonsContainer = styled.div``;
-
 const PolandFlag = styled.div`
-	height: 50px;
-	width: 50px;
+	height: 44px;
+	width: 44px;
 	background-color: white;
 	position: relative;
-	border-radius: 50%;
+	border-radius: 22px;
 	overflow: hidden;
+	margin: 0 25px;
 `;
 const RedColor = styled.div`
 	background-color: red;
@@ -54,11 +49,11 @@ export const Navbar = () => {
 		<MainContainer>
 			<Container>
 				<LogoContainer>
-					<Logo>Booking.com</Logo>
+					<Text size="h4">Booking.com</Text>
 				</LogoContainer>
 				<ButtonsContainer>
-					<Flex>
-						<CustomIcon icon={HelpOutlineIcon} color="white"  />
+					<Flex backGr="primary">
+						<CustomIcon icon={HelpOutlineIcon} color="white" />
 						<Text title uppercase color="white">
 							pln
 						</Text>
