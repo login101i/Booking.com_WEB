@@ -7,11 +7,13 @@ import LocalTaxiIcon from "@mui/icons-material/LocalTaxi";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 
 import { Button, Flex, Text, CustomIcon } from "../sharedComponents";
+import { SearchBar } from "./";
 
 const MainContainer = styled.div`
 	width: 100%;
 	margin-left: 60px;
-	max-width: 1120px;
+	max-width: 1220px;
+	position: relative;
 `;
 
 const HeaderItemContainer = styled.div`
@@ -31,6 +33,12 @@ const HeaderItemContainer = styled.div`
 	}
 `;
 
+export const SearchBarContainer = styled.div`
+	position: absolute;
+	bottom: -70px;
+	left: 0px;
+	width: 100%;
+`;
 export const Header = () => {
 	const [active, setActive] = React.useState(false);
 	console.log(
@@ -67,7 +75,6 @@ export const Header = () => {
 					onClick={() => setActive("Wynajem samochodów")}
 					active={active === "Wynajem samochodów"}
 				>
-					>
 					<Text>
 						<CustomIcon icon={DirectionsCarIcon} color="white" />
 						Wynajem samochodów
@@ -77,7 +84,6 @@ export const Header = () => {
 					onClick={() => setActive("Atrakcje")}
 					active={active === "Atrakcje"}
 				>
-					>
 					<Text>
 						<CustomIcon icon={LocalTaxiIcon} color="white" />
 						Atrakcje
@@ -101,6 +107,9 @@ export const Header = () => {
 					Szukaj ofert hoteli, domów i wielu innych obiektów...
 				</Text>
 			</Flex>
+			<SearchBarContainer>
+				<SearchBar />
+			</SearchBarContainer>
 		</MainContainer>
 	);
 };

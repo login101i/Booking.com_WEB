@@ -10,14 +10,22 @@ const ButtonContainer = styled.button`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: ${(props) => (props.backGrWhite ? "white" : "transparent")};
+	background-color: ${(props) =>
+		props.backGrWhite
+			? "white"
+			: props.backGr
+			? props.theme.colors[props.backGr]
+			: "transparent"};
 	margin: 2px 10px;
 	padding: 5px 10px;
 	border: ${(props) => props.backGrWhite && props.theme.colors.primary};
 	cursor: pointer;
+	color: ${(props) => (props.color ? props.color : "black")};
 `;
-export const Button = ({ backGrWhite, children }) => {
+export const Button = ({ backGrWhite, backGr, color, children }) => {
 	return (
-		<ButtonContainer backGrWhite={backGrWhite}>{children}</ButtonContainer>
+		<ButtonContainer backGrWhite={backGrWhite} color={color} backGr={backGr}>
+			{children}
+		</ButtonContainer>
 	);
 };

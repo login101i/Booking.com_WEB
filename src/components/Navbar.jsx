@@ -10,7 +10,7 @@ const MainContainer = styled.div`
 	height: 70px;
 	display: flex;
 	margin-left: 80px;
-	max-width: 1120px;
+	max-width: 1220px;
 `;
 
 const Container = styled.div`
@@ -60,7 +60,7 @@ export const Navbar = () => {
 						<PolandFlag>
 							<RedColor />
 						</PolandFlag>
-						<Button>Udostępnij obiekt</Button>
+						<Button color="white">Udostępnij obiekt</Button>
 						<Button backGrWhite>Zarejestruj się</Button>
 						<Button backGrWhite>Zaloguj się</Button>
 					</Flex>
