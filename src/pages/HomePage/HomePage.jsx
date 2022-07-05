@@ -7,7 +7,6 @@ import { Flex } from "../../sharedComponents";
 
 const Container = styled.div`
 	width: 100%;
-
 	background-color: ${({ theme }) => theme.colors.primary};
 	display: flex;
 	flex-direction: column;
