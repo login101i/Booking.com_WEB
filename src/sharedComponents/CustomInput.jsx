@@ -10,7 +10,8 @@ import { Flex } from "../sharedComponents";
 import { UseComponentVisible } from "../utils/UseComponentVisible";
 const MainContainer = styled.div`
   position: relative;
-  border: 3px solid orange;
+  border: ${(props) =>
+    props.border ? `3px solid ${props.border}` : "3px solid orange"};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,6 +57,7 @@ const ComponentContainer = styled.div`
   position: absolute;
   top: 66px;
   left: -2px;
+  z-index: 1111;
 `;
 
 export const CustomInput = ({
@@ -70,11 +72,12 @@ export const CustomInput = ({
   placeholder,
   center,
   component,
+  onClick,
+  border,
   children
 }) => {
-
   return (
-    <MainContainer backGr={backGr}>
+    <MainContainer backGr={backGr} onClick={onClick} border={border}>
       <LeftContainer>{leftIcon}</LeftContainer>
       <Container
         borderRadius={borderRadius}
@@ -87,10 +90,7 @@ export const CustomInput = ({
         placeholder={placeholder}
         center={center}
       />
-        <ComponentContainer>
-          {  component}
-        </ComponentContainer>
-     
+      <ComponentContainer>{component}</ComponentContainer>
 
       {rightIcon && <RightContainer>{rightIcon}</RightContainer>}
     </MainContainer>

@@ -38,15 +38,15 @@ export const SearchBar = () => {
   ]);
 
   const [openOptions, setOpenOptions] = useState(false);
-  const [options, setOptions] = useState([
-    {
-      adult: "2 dorosłych",
-      children: "0 dzieci",
-      room: "1 pokój"
-    }
-  ]);
+  const [options, setOptions] = useState({
+    adult: 2,
+    children: 0,
+    room: 1
+  });
 
-  const { ref, isComponentVisible } = UseComponentVisible(showDate || openOptions);
+  const { ref, isComponentVisible } = UseComponentVisible(
+    showDate || openOptions
+  );
 
   return (
     <div ref={ref}>
@@ -56,16 +56,11 @@ export const SearchBar = () => {
           placeholder="Gdzie się wybierasz?"
         />
         <CustomInput
-          leftIcon={
-            <CustomIcon
-              color="grey"
-              icon={CalendarMonthIcon}
-              onClick={() => {
-                setOpenOptions(false);
-                setShowDate(!showDate);
-              }}
-            />
-          }
+          onClick={() => {
+            setOpenOptions(false);
+            setShowDate(!showDate);
+          }}
+          leftIcon={<CustomIcon color="grey" icon={CalendarMonthIcon} />}
           placeholder={
             format(date[0].startDate, "MM/dd/yyy") +
             " do " +
@@ -89,33 +84,35 @@ export const SearchBar = () => {
         />
 
         <CustomInput
-          leftIcon={
-            <CustomIcon
-              color="grey"
-              icon={PersonIcon}
-              onClick={() => {
-                setOpenOptions(!openOptions);
-                setShowDate(false);
-              }}
-            />
-          }
+          onClick={() => {
+            setOpenOptions(!openOptions);
+            setShowDate(false);
+          }}
+          leftIcon={<CustomIcon color="grey" icon={PersonIcon} />}
           rightIcon={<CustomIcon color="grey" icon={ExpandMoreIcon} />}
           placeholder={
-            options[0].adult +
-            " * " +
-            options[0].children +
-            " * " +
-            options[0].room
+            options.adult +
+            " dorosłych * " +
+            options.children +
+            " dzieci * " +
+            options.room +
+            " pokój"
           }
           width="230px"
-          component={isComponentVisible && openOptions && <SearchBarOptions />}
+          component={
+            isComponentVisible &&
+            openOptions && (
+              <SearchBarOptions options={options} setOptions={setOptions} />
+            )
+          }
         />
         <CustomInput
           width="auto"
           color="white"
-          backGr="primary"
+          backGr="secondary"
           placeholder="Szukaj"
           center
+          
         />
       </Flex>
     </div>

@@ -9,9 +9,9 @@ const App = () => {
 	return (
 		<ThemeProvider theme={appTheme}>
 			<Routes>
-				<Route path="/" element={<HomePage />} />
+				<Route path="/" element={<HomePage />} exact/>
 				
-				<Route path="/hotels" element={<List />} />
+				<Route path="/hotels" element={<List />} exact/>
 				<Route path="/hotel/:id" element={<Hotel />} />
 			</Routes>
 		</ThemeProvider>

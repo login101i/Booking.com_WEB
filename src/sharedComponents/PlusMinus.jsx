@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const MainContainer = styled.div`
+const MainContainer = styled.button`
   width: 40px;
   height: 40px;
   display: flex;
@@ -13,12 +13,18 @@ const MainContainer = styled.div`
   border-radius: 3px;
   margin: 0px 15px;
   transition: 0.14s all ease-in-out;
+  background-color: ${(props) => (props.disabled ? "lightGrey" : "white")};
 
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   &:hover {
     background-color: lightblue;
   }
 `;
 
-export const PlusMinus = ({ sign }) => {
-  return <MainContainer>{sign}</MainContainer>;
+export const PlusMinus = ({ sign, onClick, disabled }) => {
+  return (
+    <MainContainer onClick={onClick} disabled={disabled}>
+      {sign}
+    </MainContainer>
+  );
 };

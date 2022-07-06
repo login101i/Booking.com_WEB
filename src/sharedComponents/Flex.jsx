@@ -5,12 +5,13 @@ export const Container = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.column ? "column" : "row")};
   justify-content: ${(props) => (props.space ? "space-between" : "")};
-  align-items: ${(props) => (props.space ? "center" : "")};
+  align-items: ${(props) => (props.center ? "center" : "")};
   width: ${(props) => (props.width ? props.width : "")};
   background-color: ${(props) =>
     props.backGr ? props.theme.colors[props.backGr] : props.theme.colors.white};
   margin: ${(props) => (props.margin ? props.margin : "")};
   height: ${(props) => (props.height ? props.height : "")};
+  gap: ${(props) => props.gap && props.gap};
 `;
 
 export const Flex = ({
@@ -22,6 +23,7 @@ export const Flex = ({
   backGr,
   margin,
   center,
+  gap,
   children
 }) => {
   return (
@@ -33,6 +35,7 @@ export const Flex = ({
       height={height}
       margin={margin}
       center={center}
+      gap={gap}
     >
       {children}
     </Container>

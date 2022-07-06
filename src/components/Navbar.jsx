@@ -56,13 +56,13 @@ export const Navbar = () => {
     <MainContainer>
       <Container>
         <LogoContainer>
-          <Text size="h4" color="white">
+          <Text size="h4" white>
             Booking.com
           </Text>
         </LogoContainer>
         <ButtonsContainer>
-          <CustomIcon icon={HelpOutlineIcon} color="white" />
-          <Text title uppercase color="white">
+          <CustomIcon icon={HelpOutlineIcon} white />
+          <Text title uppercase white>
             pln
           </Text>
           <PolandFlag>
