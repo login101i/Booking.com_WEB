@@ -23,7 +23,7 @@ const Container = styled.div`
 const CheckBoxContainer = styled.div`
   margin-top: 10px;
   display: flex;
-  margin-left: -160px;
+  margin-left: -150px;
 `;
 
 export const MailList = () => {
@@ -32,16 +32,16 @@ export const MailList = () => {
   return (
     <MainContainer>
       <Container>
-        <Text size="h4"  white>
+        <Text size="h4" white>
           Zaszczędź czas i pieniądze!
-        </Text >
+        </Text>
         <Text size="h7" white marginBtm={4}>
           Zarejestruj się a otrzymasz najlepsze oferty.
         </Text>
         <Flex center backGr="primary">
           <CustomInput
             placeholder="Twój email"
-            height="25px"
+            height="34px"
             border="lightBlue"
             width="350px"
           />
@@ -51,7 +51,7 @@ export const MailList = () => {
         </Flex>
         <CheckBoxContainer>
           <Checkbox
-            size="small"
+            size="medium"
             sx={{
               color: "white",
               "&.Mui-checked": {
@@ -59,7 +59,7 @@ export const MailList = () => {
               }
             }}
           />
-          <Text  white>
+          <Text white>
             Wyślij mi link aby dostać darmową aplikację Booking.com
           </Text>
         </CheckBoxContainer>

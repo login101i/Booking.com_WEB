@@ -48,6 +48,8 @@ export const Header = ({ type }) => {
     position: ${searchBarTop ? "fixed" : "absolute"};
     top: ${searchBarTop ? "0px" : "230px"};
     z-index: 111;
+
+    margin-left: 20px;
   `;
 
   const listenToScroll = () => {

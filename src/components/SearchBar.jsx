@@ -28,7 +28,7 @@ const Shadow = styled.div`
 `;
 
 export const SearchBar = () => {
-  const [showDate, setShowDate] = useState(false);
+  const [showDate, setShowDate] = useState();
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -37,16 +37,22 @@ export const SearchBar = () => {
     }
   ]);
 
-  const [openOptions, setOpenOptions] = useState(false);
+  const [openOptions, setOpenOptions] = useState();
+  console.log(
+    "%cMyProject%cline:40%copenOptions",
+    "color:#fff;background:#ee6f57;padding:3px;border-radius:2px",
+    "color:#fff;background:#1f3c88;padding:3px;border-radius:2px",
+    "color:#fff;background:rgb(251, 178, 23);padding:3px;border-radius:2px",
+    openOptions
+  );
   const [options, setOptions] = useState({
     adult: 2,
     children: 0,
     room: 1
   });
 
-  const { ref, isComponentVisible } = UseComponentVisible(
-    showDate || openOptions
-  );
+  const { ref, isComponentVisible, setIsComponentVisible } =
+    UseComponentVisible(showDate && openOptions);
 
   return (
     <div ref={ref}>
@@ -56,11 +62,16 @@ export const SearchBar = () => {
           placeholder="Gdzie się wybierasz?"
         />
         <CustomInput
-          onClick={() => {
-            setOpenOptions(false);
-            setShowDate(!showDate);
-          }}
-          leftIcon={<CustomIcon color="grey" icon={CalendarMonthIcon} />}
+          leftIcon={
+            <CustomIcon
+              color="grey"
+              icon={CalendarMonthIcon}
+              onClick={() => {
+                setOpenOptions(false);
+                setShowDate(!showDate);
+              }}
+            />
+          }
           placeholder={
             format(date[0].startDate, "MM/dd/yyy") +
             " do " +
@@ -84,11 +95,16 @@ export const SearchBar = () => {
         />
 
         <CustomInput
-          onClick={() => {
-            setOpenOptions(!openOptions);
-            setShowDate(false);
-          }}
-          leftIcon={<CustomIcon color="grey" icon={PersonIcon} />}
+          leftIcon={
+            <CustomIcon
+              color="grey"
+              icon={PersonIcon}
+              onClick={() => {
+                setOpenOptions(!openOptions);
+                setShowDate(false);
+              }}
+            />
+          }
           rightIcon={<CustomIcon color="grey" icon={ExpandMoreIcon} />}
           placeholder={
             options.adult +
@@ -112,7 +128,6 @@ export const SearchBar = () => {
           backGr="secondary"
           placeholder="Szukaj"
           center
-          
         />
       </Flex>
     </div>

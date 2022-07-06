@@ -2,6 +2,7 @@ import React from "react";
 
 import styled from "styled-components";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import { Link } from "react-router-dom";
 
 import { Button, Flex, Text, CustomIcon } from "../sharedComponents";
 
@@ -61,7 +62,7 @@ export const Navbar = () => {
           </Text>
         </LogoContainer>
         <ButtonsContainer>
-          <CustomIcon icon={HelpOutlineIcon} white />
+          <CustomIcon icon={HelpOutlineIcon} color="white" />
           <Text title uppercase white>
             pln
           </Text>
@@ -70,7 +71,9 @@ export const Navbar = () => {
           </PolandFlag>
           <Button color="white">Udostępnij obiekt</Button>
           <Button backGrWhite>Zarejestruj się</Button>
-          <Button backGrWhite>Zaloguj się</Button>
+          <Link to="/login">
+            <Button backGrWhite>Zaloguj się</Button>
+          </Link>
         </ButtonsContainer>
       </Container>
     </MainContainer>

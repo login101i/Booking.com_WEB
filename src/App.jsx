@@ -3,7 +3,9 @@ import { ThemeProvider } from "styled-components";
 import { HomePage } from "./pages/HomePage/HomePage";
 import { Hotel } from "./pages/Hotel/Hotel";
 import { List } from "./pages/List/List";
+import { LoginPage } from "./pages/Authentication/LoginPage";
 import { appTheme } from "./infrasctructure/theme";
+import './styles.css'
 
 const App = () => {
 	return (
@@ -13,6 +15,7 @@ const App = () => {
 				
 				<Route path="/hotels" element={<List />} exact/>
 				<Route path="/hotel/:id" element={<Hotel />} />
+				<Route path="/login" element={<LoginPage />} />
 			</Routes>
 		</ThemeProvider>
 	);
