@@ -5,7 +5,6 @@ import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import LocalTaxiIcon from "@mui/icons-material/LocalTaxi";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-
 import { Button, Flex, Text, CustomIcon } from "../sharedComponents";
 import { SearchBar } from "./";
 
@@ -36,13 +35,7 @@ const HeaderItemContainer = styled.div`
 export const Header = ({ type }) => {
   const [active, setActive] = useState(false);
   const [searchBarTop, setSearchBarTop] = useState(false);
-  console.log(
-    "%cMyProject%cline:44%csearchBarTop",
-    "color:#fff;background:#ee6f57;padding:3px;border-radius:2px",
-    "color:#fff;background:#1f3c88;padding:3px;border-radius:2px",
-    "color:#fff;background:rgb(179, 214, 110);padding:3px;border-radius:2px",
-    searchBarTop
-  );
+
 
   const SearchBarContainer = styled.div`
     position: ${searchBarTop ? "fixed" : "absolute"};

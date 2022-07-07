@@ -36,7 +36,7 @@ const ButtonsContainer = styled.div`
 
 const PolandFlag = styled.div`
   height: 28px;
-  width: 28px;
+  width: 128px;
   background-color: white;
   position: relative;
   border-radius: 14px;
@@ -56,11 +56,14 @@ export const Navbar = () => {
   return (
     <MainContainer>
       <Container>
-        <LogoContainer>
-          <Text size="h4" white>
-            Booking.com
-          </Text>
-        </LogoContainer>
+        <Link to="/">
+          <LogoContainer>
+            <Text size="h4" white>
+              Booking.com
+            </Text>
+          </LogoContainer>
+        </Link>
+
         <ButtonsContainer>
           <CustomIcon icon={HelpOutlineIcon} color="white" />
           <Text title uppercase white>

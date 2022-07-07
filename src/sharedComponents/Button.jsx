@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { Flex } from "./Flex";
 
 const ButtonContainer = styled.button`
-  width: 200px;
+  width: auto;
   height: 40px;
   border: 2px solid white;
   color: ${(props) =>
@@ -16,8 +17,8 @@ const ButtonContainer = styled.button`
       : props.backGr
       ? props.theme.colors[props.backGr]
       : "transparent"};
-  margin: 2px 10px;
-  padding: 5px 10px;
+  margin: ${(props) => (props.margin ? props.margin : "2px 10px")};
+  padding: 5px 20px;
   border: ${(props) => props.backGrWhite && props.theme.colors.primary};
   cursor: pointer;
   color: ${(props) => (props.color ? props.color : "black")};
@@ -29,6 +30,9 @@ export const Button = ({
   color,
   style,
   radius,
+  title,
+  rightIcon,
+  margin,
   children
 }) => {
   return (
@@ -38,8 +42,15 @@ export const Button = ({
       backGr={backGr}
       radius={radius}
       style={style}
+      rightIcon={rightIcon}
+      margin={margin}
     >
-      {children}
+      <Flex center backGr="inherit">
+        {" "}
+        {title}
+        {children}
+        {rightIcon}
+      </Flex>
     </ButtonContainer>
   );
 };

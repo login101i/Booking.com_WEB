@@ -3,6 +3,7 @@ import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
 import AccountCircle from "@mui/icons-material/AccountCircle";
@@ -38,28 +39,37 @@ export const SearchBar = () => {
   ]);
 
   const [openOptions, setOpenOptions] = useState();
-  console.log(
-    "%cMyProject%cline:40%copenOptions",
-    "color:#fff;background:#ee6f57;padding:3px;border-radius:2px",
-    "color:#fff;background:#1f3c88;padding:3px;border-radius:2px",
-    "color:#fff;background:rgb(251, 178, 23);padding:3px;border-radius:2px",
-    openOptions
-  );
+
   const [options, setOptions] = useState({
     adult: 2,
     children: 0,
     room: 1
   });
 
+  const [destination, setDestination] = useState("Zakopane");
+
   const { ref, isComponentVisible, setIsComponentVisible } =
     UseComponentVisible(showDate && openOptions);
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    console.log("----------");
+    navigate("/hotels", {
+      state: {
+        destination,
+        date,
+        options
+      }
+    });
+  };
 
   return (
     <div ref={ref}>
       <Flex>
         <CustomInput
           leftIcon={<CustomIcon color="grey" icon={BedIcon} />}
-          placeholder="Gdzie się wybierasz?"
+          placeholder={destination ? "Gdzie się wybierasz?" : destination}
+          onChange={(e) => setDestination(e.target.value)}
         />
         <CustomInput
           leftIcon={
@@ -128,6 +138,7 @@ export const SearchBar = () => {
           backGr="secondary"
           placeholder="Szukaj"
           center
+          onClick={handleSearch}
         />
       </Flex>
     </div>

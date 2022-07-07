@@ -1,6 +1,6 @@
 export const colors = {
   primary: "#003580", // Light purple
-  secondary: "#2291f2",
+  secondary: "#1e7ebf",
   white: "white",
   black: "#000000",
   blackSpace: "#242423",
@@ -74,6 +74,7 @@ export const fontSizes = {
   button: "14px",
   body: "16px",
   title: "28px",
+  h8: "12px",
   h7: "14px",
   h6: "18px",
   h5: "24px",

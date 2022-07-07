@@ -10,14 +10,21 @@ const MainContainer = styled.div`
       : "14px"};
   text-transform: ${(props) => (props.uppercase ? "uppercase" : "")};
   color: ${(props) =>
-    props.white ? props.theme.colors.text.primary : props.theme.colors.text.secondary};
+    props.white
+      ? props.theme.colors.text.primary
+      : props.color
+      ? props.theme.colors.text[props.color]
+      : props.theme.colors.text.secondary};
   display: flex;
   align-items: center;
   margin-bottom: ${(props) =>
     props.marginBtm ? props.theme.space[props.marginBtm] : ""};
   white-space: pre-wrap;
   white-space: ${(props) => (props.wrap ? "wrap" : "nowrap")};
-  padding:5px
+  padding: 2px;
+  background-color: ${(props) => (props.backGr ? props.backGr : "")};
+  margin: ${(props) => props.margin};
+  font-weight: ${(props) => props.bold && "900"};
 `;
 
 export const Text = ({
@@ -28,7 +35,10 @@ export const Text = ({
   wrap,
   color,
   white,
-  children
+  children,
+  margin,
+  bold,
+  backGr
 }) => {
   return (
     <MainContainer
@@ -39,6 +49,9 @@ export const Text = ({
       wrap={wrap}
       color={color}
       white={white}
+      backGr={backGr}
+      margin={margin}
+      bold={bold}
     >
       {children}
     </MainContainer>

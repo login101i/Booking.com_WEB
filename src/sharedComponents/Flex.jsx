@@ -12,6 +12,7 @@ export const Container = styled.div`
   margin: ${(props) => (props.margin ? props.margin : "")};
   height: ${(props) => (props.height ? props.height : "")};
   gap: ${(props) => props.gap && props.gap};
+  flex-grow: ${(props) => (props.grow ? 1 : "")};
 `;
 
 export const Flex = ({
@@ -24,6 +25,7 @@ export const Flex = ({
   margin,
   center,
   gap,
+  grow,
   children
 }) => {
   return (
@@ -36,6 +38,7 @@ export const Flex = ({
       margin={margin}
       center={center}
       gap={gap}
+      grow={grow}
     >
       {children}
     </Container>

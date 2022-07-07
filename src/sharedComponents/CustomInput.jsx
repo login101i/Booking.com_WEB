@@ -74,6 +74,7 @@ export const CustomInput = ({
   component,
   onClick,
   border,
+  onChange,
   children
 }) => {
   return (
@@ -89,6 +90,7 @@ export const CustomInput = ({
         wrap={wrap}
         placeholder={placeholder}
         center={center}
+        onChange={onChange}
       />
       <ComponentContainer>{component}</ComponentContainer>
 
