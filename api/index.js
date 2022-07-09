@@ -4,16 +4,20 @@ import mongoose from "mongoose";
 import colors from "colors";
 import cors from "cors";
 
-import authRoutes from "./routes/auth.js";
+import authRoute from "./routes/auth.js";
+import usersRoute from "./routes/users.js";
+import hotelsRoute from "./routes/hotels.js";
+import roomsRoute from "./routes/rooms.js";
 
 const app = express();
 dotenv.config();
 
-app.get("/", (req, res) => {
-	res.send("Hello there");
-});
 
-app.use("/auth", authRoutes);
+
+app.use("/api/auth", authRoute);
+app.use("/api/users", usersRoute);
+app.use("/api/hotels", hotelsRoute);
+app.use("/api/rooms", roomsRoute);
 
 const connect = async () => {
 	try {
