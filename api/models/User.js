@@ -4,36 +4,36 @@ const UserSchema = new mongoose.Schema(
     username: {
       type: String,
       required: true,
-      unique: true,
+      unique: true
     },
     email: {
       type: String,
       required: true,
-      unique: true,
+      unique: true
     },
     country: {
       type: String,
-      required: false,
+      required: false
     },
     img: {
-      type: String,
+      type: String
     },
     city: {
       type: String,
-      required: false,
+      required: false
     },
     phone: {
       type: String,
-      required: false,
+      required: false
     },
     password: {
       type: String,
-      required: true,
+      required: true
     },
     isAdmin: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   { timestamps: true }
 );

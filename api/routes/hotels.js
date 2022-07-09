@@ -1,13 +1,14 @@
 import express from "express";
 import { createHotel, updateHotel, getHotel, getHotels, deleteHotel } from "../controllers/hotel.js";
+import { verifyUser, verifyAdmin } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
 //CREATE
-router.post("/", createHotel);
+router.post("/", verifyAdmin,  createHotel);
 
 //UPDATE
-router.put("/:id", updateHotel);
+router.put("/:id", verifyAdmin, updateHotel);
 
 // GET  
 router.get("/find/:id", getHotel)
@@ -16,7 +17,7 @@ router.get("/find/:id", getHotel)
 router.get('/', getHotels)
 
 // REMOVE HOTEL
-router.delete('/:id', deleteHotel)
+router.delete('/:id', verifyAdmin, deleteHotel)
 
 
 export default router;
