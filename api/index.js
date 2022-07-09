@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import colors from "colors";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
@@ -32,6 +33,7 @@ mongoose.connection.on("disconnected", () => {
 
 //middlewares
 app.use(express.json());
+app.use(cookieParser())
 
 // routes
 app.use("/api/auth", authRoute);
