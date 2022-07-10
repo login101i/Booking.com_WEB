@@ -1,6 +1,7 @@
 import React from "react";
 
 import styled from "styled-components";
+import useFetch from "../hooks/useFetch.js";
 
 import { Flex, Text } from "../sharedComponents";
 
@@ -25,18 +26,24 @@ const TextContainer = styled.div`
   left: 20px;
 `;
 
-export const Featured = ({ img }) => {
+export const Featured = ({ img, city, availableHotels }) => {
   return (
     <MainContainer>
-      <Image src={img} />
-      <TextContainer>
-        <Text white size="h3">
-          Opole
-        </Text>
-        <Text white size="h4">
-          123
-        </Text>
-      </TextContainer>
+      {!city ? (
+        "Loading"
+      ) : (
+        <>
+          <Image src={img} />
+          <TextContainer>
+            <Text white size="h3">
+              {city}
+            </Text>
+            <Text white size="h4">
+              {availableHotels}
+            </Text>
+          </TextContainer>
+        </>
+      )}
     </MainContainer>
   );
 };

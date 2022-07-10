@@ -1,7 +1,7 @@
 import React from "react";
 
 import styled from "styled-components";
-import { Flex, Text , RatingContainer} from "../sharedComponents";
+import { Flex, Text, RatingContainer } from "../sharedComponents";
 
 const MainContainer = styled.div`
   overflow: hidden;
@@ -13,8 +13,14 @@ const MainContainer = styled.div`
   height: auto;
   display: flex;
   justify-content: space-between;
-  height: 280px;
+  height: 240px;
   transition: 0.3s all ease-in-out;
+`;
+
+const Image = styled.img`
+  object-fit: cover;
+  height: 180px;
+  max-width: 200px;
 
   & :hover {
     transform: scale(1.03);
@@ -22,27 +28,31 @@ const MainContainer = styled.div`
   }
 `;
 
-const Image = styled.img`
-  object-fit: cover;
-  height: 180px;
-  max-width: 200px;
-`;
-
-
-
 export const FeaturedItem = ({
   img = "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/148981006.jpg?k=9166090226f0a31f52d948f49814c0db4f5b05868bfb8b0da0fbe04a8fba1301&o=&hp=1",
   price,
-  rating
+  rating,
+  availableNumber = 55,
+  type,
+  title,
+  city
 }) => {
   return (
     <MainContainer>
       <Image src={img} />
-      <Text size="h5">Opole</Text>
-      <Text>123</Text>
+      <Flex column>
+        <Text uppercase>{type === "objektów" ? "" : type}</Text>
+
+        <Text capitalize> {title} </Text>
+
+        <Text>
+          {availableNumber} {type}
+        </Text>
+      </Flex>
+
       <Flex>
-        {rating && <RatingContainer>9.2</RatingContainer>}
-        {price && <Text>Ceny już od 120zł</Text>}
+        {rating && <RatingContainer rating={rating} />}
+        {price && <Text>Ceny już od {price} zł</Text>}
       </Flex>
     </MainContainer>
   );

@@ -10,6 +10,7 @@ import { ListSearch } from "./ListSearch";
 import { ListResultItem } from "./ListResultItem";
 import { ListOptionComponent } from "./ListOptionComponent";
 import { ListOptionItem } from "./ListOptionItem";
+import { FeaturedHotels } from "./FeaturedHotels";
 
 export {
   SearchBar,
@@ -23,5 +24,6 @@ export {
   ListSearch,
   ListResultItem,
   ListOptionComponent,
-  ListOptionItem
+  ListOptionItem,
+  FeaturedHotels
 };

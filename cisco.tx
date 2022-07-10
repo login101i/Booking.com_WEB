@@ -1,0 +1,667 @@
+numer albumu = 50993
+
+50993/222 =155 + 5 = 160
+
+--------------------1---------------------
+x=160
+
+-------------------- 4 --------------------
+            Planowanie sieci
+Centrala:                   192.168.161.0/24
+Budynek1 :                  192.168.162.0/24
+Budynek2 :                  192.168.163.0/24
+
+
+Ze wględu że mamy /24 liczymy magiczną liczbę (powyżej)
+
+
+ 192.168.160.0.24 ->/30 
+
+ 128 64 32 16 8 4 2 1 / 128 64 32 16 8 4 2 1 / 128 64 32 16 8 4 2 1 /
+ 128 64 32 16 8 4      2 1 
+ ML=4 (4) 
+
+192.168.160.0
+192.168.160.4
+192.168.160.8
+192.168.160.12
+.
+.
+.
+192.168.160.0.252
+
+
+Łącze techniczne R2-R1 :        192.168.160.0/30
+Łącze techniczne Tech R1-RC:    192.168.160.4/30
+
+--------------------------5---------------------------
+
+Centrala:                    192.168.161.0/24
+    Brama domyślna R-Main       192.168.161.1
+    Interfejs SVI               192.168.161.2
+    PC IT:                      192.168.161.3
+    Server:                     192.168.161.10
+
+Budynek 1                    192.168.162.0/24
+    Brama domyślna R1           192.168.162.1
+    Interfejs SVI               192.168.162.2
+    PC C1:                      192.168.162.3
+    PC C2:                      192.168.162.4
+
+Budynek 2                    192.168.163.0/24
+    Brama domyślna R2           192.168.163.1
+    Interfejs SVI               192.168.163.2
+    PC A1:                      192.168.163.3
+    PC A2:                      192.168.163.4
+    PC B1:                      192.168.163.5
+    PC B2:                      192.168.163.6
+
+
+Planowanie adresów IP dla połączeń technicznych:
+Tech R2  - R1            192.168.160.0/30
+    R2                          192.168.160.1
+    R1                          192.168.160.2
+
+Tech Tech R1-RC           192.168.160.4/30
+    R1                          192.168.160.5
+    RC                          192.168.160.6
+
+--------------------------6---------------------------
+Wprowadzone w programie Cisco Packet Tracer
+
+--------------------------Konfiguracja-------------------------------------
+
+	
+S2#show running-config
+Building configuration...
+
+Current configuration : 1204 bytes
+!
+version 15.0
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname S2
+!
+enable password class
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+interface FastEthernet0/1
+!
+interface FastEthernet0/2
+!
+interface FastEthernet0/3
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ ip address 192.168.163.2 255.255.255.0
+!
+ip default-gateway 192.168.163.1
+!
+banner motd ^CS2, Maciej 50993^C
+!
+!
+!
+line con 0
+ password cisco
+ login
+!
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+!
+!
+!
+end
+
+
+-------------------------------------------------------------------------
+
+R2#show running-config
+Building configuration...
+
+Current configuration : 878 bytes
+!
+version 16.6.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname R2
+!
+!
+!
+enable password class
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ ip address 192.168.163.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface GigabitEthernet0/0/2
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial0/1/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/1/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+banner motd ^CR2, Maciej 50993^C
+!
+!
+!
+!
+!
+line con 0
+ password cisco
+ login
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+-------------------------------------------------------------------------
+R1#show running-config
+Building configuration...
+
+Current configuration : 878 bytes
+!
+version 16.6.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname R1
+!
+!
+!
+enable password class
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ ip address 192.168.162.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface GigabitEthernet0/0/2
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial0/1/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/1/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+banner motd ^CR1, Maciej 50993^C
+!
+!
+!
+!
+!
+line con 0
+ password cisco
+ login
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+-------------------------------------------------------------------------
+S1#show running-config
+Building configuration...
+
+Current configuration : 1204 bytes
+!
+version 15.0
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname S1
+!
+enable password class
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+interface FastEthernet0/1
+!
+interface FastEthernet0/2
+!
+interface FastEthernet0/3
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ ip address 192.168.162.2 255.255.255.0
+!
+ip default-gateway 192.168.162.1
+!
+banner motd ^CS1, Maciej 50993^C
+!
+!
+!
+line con 0
+ password cisco
+ login
+!
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+!
+!
+!
+end
+
+-------------------------------------------------------------------------
+
+R-MAIN#show running-config
+Building configuration...
+
+Current configuration : 897 bytes
+!
+version 15.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname R-MAIN
+!
+!
+!
+enable password class
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ ip address 192.168.161.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface GigabitEthernet0/0/2
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial0/1/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/1/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+no cdp run
+!
+banner motd ^CR-MAIN, Maciej 50993^C
+!
+!
+!
+!
+!
+line con 0
+ password cisco
+ login
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+-------------------------------------------------------------------------
+SIT#show running-config
+Building configuration...
+
+Current configuration : 1206 bytes
+!
+version 15.0
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname SIT
+!
+enable password class
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+interface FastEthernet0/1
+!
+interface FastEthernet0/2
+!
+interface FastEthernet0/3
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ ip address 192.168.161.2 255.255.255.0
+!
+ip default-gateway 192.168.161.1
+!
+banner motd ^CSIT, Maciej 50993^C
+!
+!
+!
+line con 0
+ password cisco
+ login
+!
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+!
+!
+!
+end
+-------------------------------------------------------------------------
+

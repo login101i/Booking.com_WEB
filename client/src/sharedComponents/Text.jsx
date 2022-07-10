@@ -8,7 +8,8 @@ const MainContainer = styled.div`
       : props.title
       ? props.theme.fontSizes.title
       : "14px"};
-  text-transform: ${(props) => (props.uppercase ? "uppercase" : "")};
+  text-transform: ${(props) =>
+    props.uppercase ? "uppercase" : props.capitalize ? "capitalize" : ""};
   color: ${(props) =>
     props.white
       ? props.theme.colors.text.primary
@@ -31,6 +32,7 @@ export const Text = ({
   title,
   size,
   uppercase,
+  capitalize,
   marginBtm,
   wrap,
   color,
@@ -52,6 +54,7 @@ export const Text = ({
       backGr={backGr}
       margin={margin}
       bold={bold}
+      capitalize={capitalize}
     >
       {children}
     </MainContainer>

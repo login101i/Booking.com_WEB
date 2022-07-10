@@ -9,8 +9,10 @@ import {
   FeaturedList,
   FooterInfo1,
   FooterInfo2,
-  MailList
+  MailList,
+  FeaturedHotels
 } from "../../components";
+import useFetch from "../../hooks/useFetch";
 
 const Container = styled.div`
   width: 100%;
@@ -40,22 +42,18 @@ export const HomePage = () => {
           <Navbar />
           <Header />
         </Container>
-
-        <FeaturedContainer>
-          <Featured img="https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/305169723.jpg?k=304479e105846887a7fa95115b4bf6c6e3edc6fbfbc955a0ff9f372fa968274b&o=&hp=1" />
-          <Featured img="https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/74636225.jpg?k=8e61c76a504fc72addb3008c392d604bc25f545d4dc3ad81f879a3bc56ec2e37&o=&hp=1" />
-          <Featured img="https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/149029786.jpg?k=12c00af5fa587b1b56047f8e9d1896d56f3a428c6775a5135f2cdc1031f2c873&o=&hp=1" />
-        </FeaturedContainer>
-        <FeaturedList title="Szukaj według rodzaju obiektu" />
+        <FeaturedHotels />
         <FeaturedList
-          title="Świetne kierunki na wakacje na plaży"
-          price={true}
-          rating={true}
+          title="Szukaj według rodzaju obiektu"
+          fetch={"/hotels/countByType"}
         />
         <FeaturedList
-          title="Poszukaj inspiracji na kolejną podróż"
-          price={true}
-          rating={true}
+          title="Świetne lokalizacje w centrum stolic"
+          fetch={"/hotels?city=madrit"}
+        />
+        <FeaturedList
+          title="Polska – odkryj to miejsce"
+          fetch={"/hotels/countByCity?cities=warszawa,poznań,zakopane,sopot,gdańsk"}
         />
         <MailList />
         <FooterInfo1 />
