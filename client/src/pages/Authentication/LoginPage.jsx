@@ -1,20 +1,52 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "./style.css";
-import bookingLogo from '../../assets/booking-logo.PNG'
-import appleIcon from  '../../assets/booking-logo.PNG'
-import facebookLogo from  '../../assets/facebook-icon.PNG'
-import googleIcon from  '../../assets/google-icon.PNG'
-import phoneIcon from  '../../assets/phone-success-icon.PNG'
-
+import bookingLogo from "../../assets/booking-logo.PNG";
+import appleIcon from "../../assets/booking-logo.PNG";
+import facebookLogo from "../../assets/facebook-icon.PNG";
+import googleIcon from "../../assets/google-icon.PNG";
+import phoneIcon from "../../assets/phone-success-icon.PNG";
+import { AuthContext } from "../../context/AuthContext";
+import axios  from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
+  const [credentials, setCredentials] = useState({
+    username: undefined,
+    password: undefined
+  });
+  console.log(credentials);
+
+  const navigate = useNavigate();
+
+  const { data, loading, error, dispatch } = useContext(AuthContext);
+  const handleChange = (e) => {
+    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  };
+
+  const handleClick = async (e) => {
+    console.log("loguję---")
+    e.preventDefault();
+    dispatch({ type: "LOGIN_START" });
+    try {
+      console.log("1")
+      const res = await axios.post("/auth/login", credentials);
+      console.log("2")
+
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details.username });
+      navigate("/");
+    } catch (err) {
+      dispatch({ type: "LOGIN_FAILURE", payload: err.response });
+
+    }
+  };
+
   return (
-    <body>
+    <div>
       <header className="header">
         <nav className="nav">
           <div className="nav-icon">
             <a href="/">
-            <img src={bookingLogo}  alt="logo" width="120px" />
+              <img src={bookingLogo} alt="logo" width="120px" />
             </a>
           </div>
           <div className="nav-btns">
@@ -36,10 +68,27 @@ export const LoginPage = () => {
           <h2>Zaloguj się lub utwórz konto</h2>
           <div className="form">
             <label htmlFor="email" className="form-label">
-              Adres e-mail
+             username
             </label>
-            <input type="email" className="form-input" />
-            <button className="form-btn">Kontynuuj za pomocą e-maila</button>
+
+            <input
+              type="text"
+              placeholder="username"
+              id="username"
+              onChange={handleChange}
+              className="form-input"
+            />
+            <input
+              type="password"
+              placeholder="password"
+              id="password"
+              onChange={handleChange}
+              className="form-input"
+            />
+
+            <button disabled={loading} className="form-btn" onClick={handleClick}>
+              Kontynuuj za pomocą e-maila
+            </button>
           </div>
           <div className="form-links">
             <div className="links-info">
@@ -48,17 +97,17 @@ export const LoginPage = () => {
             <div className="link-acces">
               <a href="#" className="link">
                 <div className="link-icon ">
-                <img src={facebookLogo} alt="" />
+                  <img src={facebookLogo} alt="" />
                 </div>
               </a>
               <a href="#" className="link">
                 <div className="link-icon">
-                  <img src={googleIcon}  alt="" />
+                  <img src={googleIcon} alt="" />
                 </div>
               </a>
               <a href="#" className="link">
                 <div className="link-icon">
-                  <img src={phoneIcon}  alt="" />
+                  <img src={phoneIcon} alt="" />
                 </div>
               </a>
             </div>
@@ -80,6 +129,6 @@ export const LoginPage = () => {
           </div>
         </div>
       </main>
-    </body>
+    </div>
   );
 };
