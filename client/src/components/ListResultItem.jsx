@@ -16,31 +16,52 @@ const MainContainer = styled.div`
   flex: 3;
   border: 1px solid lightGrey;
   display: flex;
-  padding: 20px;
+  padding: 16px;
   border-radius: 2px;
   margin-bottom: 18px;
 `;
 
 const ImageContainer = styled.img`
   object-fit: cover;
-  height: 200px;
-  max-width: 200px;
+  height: 220px;
+  max-width: 220px;
   cursor: pointer;
 `;
 
-export const ListResultItem = () => {
+export const ListResultItem = ({ item }) => {
+
+
+  const {
+    _id,
+    name,
+    type,
+    city,
+    address,
+    distance,
+    photos,
+    title,
+    desc,
+    rating,
+    rooms,
+    cheapestPrice
+  } = item;
   const img =
     "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/148981006.jpg?k=9166090226f0a31f52d948f49814c0db4f5b05868bfb8b0da0fbe04a8fba1301&o=&hp=1";
   const navigate = useNavigate();
+
+  
   return (
     <MainContainer>
-      <ImageContainer src={img} onClick={() => navigate("/hotel/1")} />
+      <ImageContainer
+        src={item.photos[0]}
+        onClick={() => navigate("/hotel/1")}
+      />
       <Flex column margin="0px 20px" grow>
-        <Text>Pokoje Krópówki 13- Hostel sabała</Text>
+        <Text uppercase>{item.name}</Text>
         <Flex>
-          <Text>Krópówki</Text>
+          <Text capitalize>{city}</Text>
           <Text>Pokaż na mapie</Text>
-          <Text>100 m od cetrum</Text>
+          <Text>{distance} m od cetrum</Text>
         </Flex>
         <Text backGr="green" white size="h8" marginBtm={3}>
           Oferta limitowana
@@ -53,9 +74,9 @@ export const ListResultItem = () => {
             }}
           />
           <Flex column margin="2px 10px">
-            <Text color="secondary" size="h7">
-              Pokój Dwuosobowy z 1 lub 2 łóżkami <br /> Na naszej stronie
-              zostały tylko 1
+            <Text wrap color="secondary" size="h7">
+              {desc.slice(0, 50)}... <br />
+              Na naszej stronie zostały tylko 1
             </Text>
             <Text color="secondary" size="h8" marginBtm={3}>
               Łóżka: 1 podwójne lub 2 pojedyncze
@@ -71,20 +92,23 @@ export const ListResultItem = () => {
       </Flex>
       <Flex column space>
         <Flex column>
-          <Flex center>
-            <Flex column margin="0px 10px">
-              <Text>Znakomiy</Text>
+          <Flex center space marginBtm="10px">
+            <Flex column>
+              <Text>{rating >= 9 ? "Znakomity" : "Bardzo dobry"}</Text>
               <Text>90 opini</Text>
             </Flex>
-            <RatingContainer rating={9.9} size="28px" />
+            <RatingContainer rating={rating} size="28px" />
           </Flex>
-          <Text>Lokalizacja</Text>
+          <Flex>
+            <Text>Lokalizacja : </Text>
+            <Text capitalize>{city}</Text>
+          </Flex>
         </Flex>
         <Flex column>
           <Text size="h8">3 noce, 2 dorosłych</Text>
-          <Flex center>
+          <Flex space>
             <Text color="error">3 noce, 2 dorosłych</Text>
-            <Text size="h6">179 zł</Text>
+            <Text size="h6">{cheapestPrice} zł</Text>
           </Flex>
 
           <Text size="h8">3 noce, 2 dorosłych</Text>
@@ -93,6 +117,7 @@ export const ListResultItem = () => {
           title="Zobacz dostępność"
           backGr="secondary"
           color="white"
+          onClick={() => navigate(`/hotels/${_id}`)}
           rightIcon={
             <CustomIcon icon={ChevronRightIcon} color="white" size={22} />
           }

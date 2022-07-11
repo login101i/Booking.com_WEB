@@ -53,7 +53,6 @@ export const SearchBar = () => {
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    console.log("----------");
     navigate("/hotels", {
       state: {
         destination,

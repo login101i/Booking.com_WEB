@@ -46,6 +46,7 @@ const Container = styled.input`
 
   ::placeholder {
     color: ${(props) => props.color};
+    font-size:13px;
     text-align: ${(props) => (props.center ? "center" : "")};
   }
 `;

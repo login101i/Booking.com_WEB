@@ -6,7 +6,7 @@ export const ListOptionItem = () => {
   return (
     <Flex space>
       <Flex>
-        <Checkbox onClick={console.log("check")}/>
+        <Checkbox onClick={null}/>
         <Text>Text here</Text>
       </Flex>
 

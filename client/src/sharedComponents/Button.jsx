@@ -33,7 +33,8 @@ export const Button = ({
   title,
   rightIcon,
   margin,
-  children
+  children,
+  onClick
 }) => {
   return (
     <ButtonContainer
@@ -44,6 +45,7 @@ export const Button = ({
       style={style}
       rightIcon={rightIcon}
       margin={margin}
+      onClick={onClick}
     >
       <Flex center backGr="inherit">
         {" "}

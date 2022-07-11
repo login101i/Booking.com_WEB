@@ -49,7 +49,7 @@ export const HomePage = () => {
         />
         <FeaturedList
           title="Świetne lokalizacje w centrum stolic"
-          fetch={"/hotels?city=madrit"}
+          fetch={"/hotels/countByCity?cities=madrit,warszawa,kraków,berlin,gdańsk"}
         />
         <FeaturedList
           title="Polska – odkryj to miejsce"

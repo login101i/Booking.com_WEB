@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import useFetch from "../hooks/useFetch";
+import {useFetch} from "../hooks/useFetch";
 import { Text } from "../sharedComponents";
 
 import { Featured } from "./Featured";
@@ -19,7 +19,6 @@ export const FeaturedHotels = () => {
   const { data, loading, error } = useFetch(
     "/hotels/countByCity?cities=poznań,kraków,warszawa"
   );
-  console.log(data);
   return (
     <>
       {loading ? (

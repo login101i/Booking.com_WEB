@@ -1,7 +1,7 @@
 import React from "react";
 
 import styled from "styled-components";
-import useFetch from "../hooks/useFetch";
+import {useFetch} from "../hooks/useFetch";
 import { Flex, Text } from "../sharedComponents";
 import { FeaturedItem } from "./FeaturedItem";
 
@@ -29,7 +29,9 @@ export const FeaturedList = ({
   fetch
 }) => {
   const { data, loading, error } = useFetch(fetch);
-  console.log(data);
+
+  const poland = title.includes("Polska");
+
 
   const images = [
     "https://cf.bstatic.com/xdata/images/xphoto/square300/57584488.webp?k=bf724e4e9b9b75480bbe7fc675460a089ba6414fe4693b83ea3fdd8e938832a6&o=",
@@ -51,43 +53,44 @@ export const FeaturedList = ({
             {data &&
               images.map((img, index) => (
                 <FeaturedItem
-                  img={data[index]?.photos ? data[index]?.photos[0] : img}
+                  img={data.objects ? data.objects?.[index][0]?.photos[0] : img}
                   availableNumber={
                     fetch.includes("cities")
-                      ? data.list?.[index]
+                      ? null
                       : data[index]?.city
                       ? null
                       : data[index]?.count
                   }
                   type={
                     fetch.includes("cities")
-                      ? "objektów"
-                      : data[index]?.city
+                      ? null
+                      : data.objects?.[index]?.city
                       ? null
                       : data[index]?.type
                   }
                   key={index}
                   rating={
                     fetch.includes("cities")
-                      ? null
+                      ? data.objects?.[index][0]?.rating
                       : data[index]?.rating
                       ? data[index]?.rating
                       : null
                   }
                   title={
-                    fetch.includes("cities")
+                    poland
                       ? data.objects?.[index][0]?.city
-                      : data[index]?.name
-                      ? data[index]?.name
+                      : data.objects
+                      ? data.objects?.[index][index]?.name
                       : null
                   }
                   price={
                     fetch.includes("cities")
-                      ? null
+                      ? data.objects?.[index][0]?.cheapestPrice
                       : data[index]?.cheapestPrice
                       ? data[index]?.cheapestPrice
                       : null
                   }
+                  poland={poland}
                 />
               ))}
           </Container>

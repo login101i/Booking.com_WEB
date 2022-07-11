@@ -13,7 +13,7 @@ const MainContainer = styled.div`
   height: auto;
   display: flex;
   justify-content: space-between;
-  height: 240px;
+  max-height: 240px;
   transition: 0.3s all ease-in-out;
 `;
 
@@ -35,13 +35,14 @@ export const FeaturedItem = ({
   availableNumber = 55,
   type,
   title,
-  city
+  city,
+  poland
 }) => {
   return (
     <MainContainer>
       <Image src={img} />
       <Flex column>
-        <Text uppercase>{type === "objektów" ? "" : type}</Text>
+        <Text uppercase>{type === "obiektów" ? "" : type}</Text>
 
         <Text capitalize> {title} </Text>
 
@@ -50,10 +51,14 @@ export const FeaturedItem = ({
         </Text>
       </Flex>
 
-      <Flex>
-        {rating && <RatingContainer rating={rating} />}
-        {price && <Text>Ceny już od {price} zł</Text>}
-      </Flex>
+      {poland ? (
+        " "
+      ) : (
+        <Flex>
+          {rating && <RatingContainer rating={rating} />}
+          {price && <Text>Ceny już od {price} zł</Text>}
+        </Flex>
+      )}
     </MainContainer>
   );
 };

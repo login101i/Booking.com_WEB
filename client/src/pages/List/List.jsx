@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import { Navbar } from "../../components/Navbar";
 import { Header } from "../../components/Header";
 
 import { ListSearch, ListResultItem } from "../../components";
+import { Text } from "../../sharedComponents";
 
 import styled from "styled-components";
+import { useFetch } from "../../hooks/useFetch";
 
 const MainContainer = styled.div`
   width: 100%;
@@ -39,8 +41,23 @@ const ListResultContainer = styled.div`
 `;
 
 export const List = ({ route }) => {
+  const [min, setMin] = useState(undefined);
+  const [max, setMax] = useState(undefined);
   const location = useLocation();
- 
+
+  const [destination, setDestination] = useState(location.state.destination);
+
+
+
+  const {data, loading, error, reFetch } = useFetch(
+    `/hotels?city=${destination}&min=${min || 0}&max=${max || 1000}`
+  );
+  console.log(data)
+
+  const handleSearch = () => {
+    console.log("actualisation")
+    reFetch();
+  };
 
   return (
     <MainContainer>
@@ -49,13 +66,18 @@ export const List = ({ route }) => {
         <Header type="list" />
       </Container>
       <ListContainer>
-        <ListSearch location={location} />
+        <ListSearch location={location} setMin={setMin} setMax={setMax} handleSearch={handleSearch} />
         <ListResultContainer>
-          <ListResultItem />
-          <ListResultItem />
-          <ListResultItem />
-          <ListResultItem />
-          <ListResultItem />
+          {loading ? (
+            "loading"
+          ) : (
+            <>
+              {data &&
+                data.map((item, index) => (
+                  <ListResultItem item={item} key={index} />
+                ))}
+            </>
+          )}
         </ListResultContainer>
       </ListContainer>
     </MainContainer>
