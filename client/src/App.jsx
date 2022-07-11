@@ -14,7 +14,7 @@ const App = () => {
 				<Route path="/" element={<HomePage />} exact/>
 				
 				<Route path="/hotels" element={<List />} exact/>
-				<Route path="/hotels/:id" element={<Hotel />} />
+				<Route path="/hotels/find/:id" element={<Hotel />} />
 				<Route path="/login" element={<LoginPage />} />
 			</Routes>
 		</ThemeProvider>

@@ -29,8 +29,6 @@ const ImageContainer = styled.img`
 `;
 
 export const ListResultItem = ({ item }) => {
-
-
   const {
     _id,
     name,
@@ -48,8 +46,8 @@ export const ListResultItem = ({ item }) => {
   const img =
     "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/148981006.jpg?k=9166090226f0a31f52d948f49814c0db4f5b05868bfb8b0da0fbe04a8fba1301&o=&hp=1";
   const navigate = useNavigate();
+  console.log(_id)
 
-  
   return (
     <MainContainer>
       <ImageContainer
@@ -117,7 +115,7 @@ export const ListResultItem = ({ item }) => {
           title="Zobacz dostępność"
           backGr="secondary"
           color="white"
-          onClick={() => navigate(`/hotels/${_id}`)}
+          onClick={() => navigate(`/hotels/find/${_id}`)}
           rightIcon={
             <CustomIcon icon={ChevronRightIcon} color="white" size={22} />
           }
