@@ -21,6 +21,8 @@ import {
   CustomIcon,
   CustomInput
 } from "../sharedComponents";
+import { useContext } from "react";
+import { SearchContext } from "../context/SearchContext";
 
 const Shadow = styled.div`
   -webkit-box-shadow: -1px -5px 52px -26px rgba(66, 68, 90, 1);
@@ -37,22 +39,21 @@ export const SearchBar = () => {
       key: "selection"
     }
   ]);
-
   const [openOptions, setOpenOptions] = useState();
-
   const [options, setOptions] = useState({
     adult: 2,
     children: 0,
     room: 1
   });
-
   const [destination, setDestination] = useState("Zakopane");
-
   const { ref, isComponentVisible, setIsComponentVisible } =
     UseComponentVisible(showDate && openOptions);
   const navigate = useNavigate();
 
+  const { dispatch } = useContext(SearchContext);
+
   const handleSearch = () => {
+    dispatch({ type: "NEW_SEARCH", payload: { destination, date, options } });
     navigate("/hotels", {
       state: {
         destination,

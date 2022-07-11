@@ -1,14 +1,18 @@
-import React from 'react';
- import { BrowserRouter} from "react-router-dom";
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
 
-import ReactDOM from 'react-dom';
-import App from './App';
+import ReactDOM from "react-dom";
+import App from "./App";
+import { SearchContextProvider } from "./context/SearchContext";
 
 ReactDOM.render(
-	<React.StrictMode>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
-	</React.StrictMode>,
-	document.getElementById("root")
+  <React.StrictMode>
+    <SearchContextProvider>
+      <BrowserRouter>
+
+        <App />
+      </BrowserRouter>
+    </SearchContextProvider>
+  </React.StrictMode>,
+  document.getElementById("root")
 );

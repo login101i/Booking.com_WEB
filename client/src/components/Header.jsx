@@ -37,6 +37,7 @@ export const Header = ({ type }) => {
   const [searchBarTop, setSearchBarTop] = useState(false);
 
 
+
   const SearchBarContainer = styled.div`
     position: ${searchBarTop ? "fixed" : "absolute"};
     top: ${searchBarTop ? "0px" : "230px"};
