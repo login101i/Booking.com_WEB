@@ -11,6 +11,7 @@ import { ListResultItem } from "./ListResultItem";
 import { ListOptionComponent } from "./ListOptionComponent";
 import { ListOptionItem } from "./ListOptionItem";
 import { FeaturedHotels } from "./FeaturedHotels";
+import {Reserve} from './Reserve/Reserve'
 
 export {
   SearchBar,
@@ -25,5 +26,6 @@ export {
   ListResultItem,
   ListOptionComponent,
   ListOptionItem,
-  FeaturedHotels
+  FeaturedHotels,
+  Reserve
 };

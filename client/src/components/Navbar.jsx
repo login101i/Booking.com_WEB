@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import styled from "styled-components";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { Link } from "react-router-dom";
 
 import { Button, Flex, Text, CustomIcon } from "../sharedComponents";
+import { AuthContext } from "../context/AuthContext";
 
 const MainContainer = styled.div`
   width: 100%;
@@ -53,6 +54,7 @@ const RedColor = styled.div`
 `;
 
 export const Navbar = () => {
+  const { user } = useContext(AuthContext);
   return (
     <MainContainer>
       <Container>
@@ -73,10 +75,16 @@ export const Navbar = () => {
             <RedColor />
           </PolandFlag>
           <Button color="white">Udostępnij obiekt</Button>
-          <Button backGrWhite>Zarejestruj się</Button>
-          <Link to="/login">
-            <Button backGrWhite>Zaloguj się</Button>
-          </Link>
+          {user ? (
+            <Text white>Witaj {user} !</Text>
+          ) : (
+            <>
+              <Button backGrWhite>Zarejestruj się</Button>
+              <Link to="/login">
+                <Button backGrWhite>Zaloguj się</Button>
+              </Link>
+            </>
+          )}
         </ButtonsContainer>
       </Container>
     </MainContainer>

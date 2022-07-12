@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { FooterInfo1, Navbar } from "../../components";
 import { Header } from "../../components/Header";
@@ -17,16 +17,21 @@ import { useFetch } from "../../hooks/useFetch";
 import "./hotel.css";
 import { Text } from "../../sharedComponents";
 import { SearchContext } from "../../context/SearchContext";
+import { AuthContext } from "../../context/AuthContext";
+import { Reserve } from "../../components";
 
 export const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   const location = useLocation();
   const id = location.pathname.split("/")[3];
   console.log(id);
 
   const { data, loading, error } = useFetch(`/hotels/find/${id}`);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const {
     _id,
@@ -70,6 +75,14 @@ export const Hotel = () => {
     setSlideNumber(newSlideNumber);
   };
 
+  const handleClick = () => {
+    console.log("---------------");
+    if (user) {
+      setOpenModal(true);
+    } else {
+      navigate("/login");
+    }
+  };
   return (
     <>
       <div className="headerContainer">
@@ -143,7 +156,7 @@ export const Hotel = () => {
                       <b>{days * cheapestPrice * options.room} zł</b> ({days}{" "}
                       nocy)
                     </h2>
-                    <button>Zarezerwuj teraz !</button>
+                    <button onClick={handleClick}>Zarezerwuj teraz !</button>
                   </div>
                 </div>
               </div>
@@ -151,6 +164,7 @@ export const Hotel = () => {
               <FooterInfo1 />
 
               <FooterInfo2 />
+              {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}
             </div>
           )}
     </>

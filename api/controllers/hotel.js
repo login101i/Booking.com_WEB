@@ -1,4 +1,5 @@
 import Hotel from "../models/Hotel.js";
+import Room from "../models/Room.js";
 
 export const createHotel = async (req, res, next) => {
   const newHotel = new Hotel(req.body);
@@ -94,22 +95,17 @@ export const countByType = async (req, res, next) => {
   }
 };
 
-// export const countByCity = async (req, res, next) => {
-//   try {
-//     const poznanCity = await Hotel.countDocuments({ city: "poznań" });
-//     const warszawaCity = await Hotel.countDocuments({ city: "warszawa" });
-//     const wloclawekCity = await Hotel.countDocuments({ city: "włocławek" });
-//     const krakowCity = await Hotel.countDocuments({ city: "kraków" });
-//     const gdanskCity = await Hotel.countDocuments({ city: "gdańsk" });
+export const getHotelRooms = async (req, res, next) => {
+  try {
+    const hotel = await Hotel.findById(req.params.id);
+    const list = await Promise.all(
+      hotel.rooms.map((room) => {
+        return Room.findById(room);
+      })
+    );
+    res.status(200).json(list);
+  } catch (err) {
+    next(err);
+  }
+};
 
-//     res.status(200).json([
-//       { type: "poznań", count: poznanCity },
-//       { type: "warszawa", count: warszawaCity },
-//       { type: "włocławek", count: wloclawekCity },
-//       { type: "kraków", count: krakowCity },
-//       { type: "gdańsk", count: gdanskCity }
-//     ]);
-//   } catch (err) {
-//     next(err);
-//   }
-// };
