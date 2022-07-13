@@ -31,7 +31,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            <Route path="login" element={<Login />} />
             <Route
               index
               element={
@@ -40,6 +39,8 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route path="login" element={<Login />} />
+
             <Route path="users">
               <Route
                 index
@@ -87,7 +88,7 @@ function App() {
                 path="new"
                 element={
                   <ProtectedRoute>
-                    <NewHotel  />
+                    <NewHotel />
                   </ProtectedRoute>
                 }
               />
@@ -113,7 +114,7 @@ function App() {
                 path="new"
                 element={
                   <ProtectedRoute>
-                    <NewRoom  />
+                    <NewRoom />
                   </ProtectedRoute>
                 }
               />

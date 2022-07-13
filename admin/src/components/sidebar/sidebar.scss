@@ -3,6 +3,9 @@
   border-right: 0.5px solid rgb(230, 227, 227);
   min-height: 100vh;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   .top {
     height: 50px;
@@ -24,6 +27,7 @@
 
   .center {
     padding-left: 10px;
+    width: 80%;
 
     ul {
       list-style: none;
@@ -31,7 +35,7 @@
       padding: 0;
 
       .title {
-        font-size: 10px;
+        font-size: 12px;
         font-weight: bold;
         color: #999;
         margin-top: 15px;
@@ -43,6 +47,7 @@
         align-items: center;
         padding: 5px;
         cursor: pointer;
+        transition: 0.15s all ease-in-out;
 
         &:hover {
           background-color: #ece8ff;
@@ -53,38 +58,40 @@
           color: #7451f8;
         }
 
-        span{
-            font-size: 13px;
-            font-weight: 600;
-            color: #888;
-            margin-left: 10px;
+        span {
+          font-size: 15px;
+          font-weight: 600;
+          color: #888;
+          margin-left: 10px;
         }
       }
     }
   }
 
-  .bottom{
-      display: flex;
-      align-items: center;
-      margin: 10px;
+  .bottom {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    height: 10vh;
+    width: 80%;
+    justify-content: flex-start;
+    .colorOption {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      border: 1px solid #7451f8;
+      cursor: pointer;
+      margin: 5px;
 
-      .colorOption{
-          width: 20px;
-          height: 20px;
-          border-radius: 5px;
-          border: 1px solid #7451f8;
-          cursor: pointer;
-          margin: 5px;
-
-          &:nth-child(1){
-              background-color: whitesmoke;
-          }
-          &:nth-child(2){
-              background-color: #333;
-          }
-          &:nth-child(3){
-              background-color: darkblue;
-          }
+      &:nth-child(1) {
+        background-color: whitesmoke;
       }
+      &:nth-child(2) {
+        background-color: #333;
+      }
+      &:nth-child(3) {
+        background-color: darkblue;
+      }
+    }
   }
 }
