@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 
 export const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
-  console.log('%cMyProject%cline:12%cselectedRooms', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(179, 214, 110);padding:3px;border-radius:2px', selectedRooms)
   const { data, loading, error } = useFetch(`/hotels/room/${hotelId}`);
   const { date } = useContext(SearchContext);
 

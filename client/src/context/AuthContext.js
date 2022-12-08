@@ -6,7 +6,6 @@ const INITIAL_STATE = {
   loading: false,
   error: null
 };
-console.log(INITIAL_STATE)
 
 export const AuthContext = createContext(INITIAL_STATE);
 

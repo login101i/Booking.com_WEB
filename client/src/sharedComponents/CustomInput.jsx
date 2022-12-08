@@ -46,7 +46,7 @@ const Container = styled.input`
 
   ::placeholder {
     color: ${(props) => props.color};
-    font-size:13px;
+    font-size: 13px;
     text-align: ${(props) => (props.center ? "center" : "")};
   }
 `;
@@ -76,6 +76,8 @@ export const CustomInput = ({
   onClick,
   border,
   onChange,
+  onKeyDown,
+
   children
 }) => {
   return (
@@ -92,6 +94,7 @@ export const CustomInput = ({
         placeholder={placeholder}
         center={center}
         onChange={onChange}
+        onKeyDown={onKeyDown}
       />
       <ComponentContainer>{component}</ComponentContainer>
 

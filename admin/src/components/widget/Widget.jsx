@@ -10,13 +10,7 @@ import useFetch from "../../../../admin/src/hooks/useFetch";
 
 const Widget = ({ type }) => {
   const { data, loading, error } = useFetch(`/admin/dashboardInfo`);
-  console.log(
-    "%cMyProject%cline:12%cdata",
-    "color:#fff;background:#ee6f57;padding:3px;border-radius:2px",
-    "color:#fff;background:#1f3c88;padding:3px;border-radius:2px",
-    "color:#fff;background:rgb(251, 178, 23);padding:3px;border-radius:2px",
-    data
-  );
+
 
   let info;
 
