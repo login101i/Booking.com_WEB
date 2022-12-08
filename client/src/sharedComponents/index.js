@@ -5,6 +5,7 @@ import { CustomIcon } from "./CustomIcon";
 import { CustomInput } from "./CustomInput";
 import { PlusMinus } from "./PlusMinus";
 import { RatingContainer } from "./RatingContainer";
+import {DirectionArrows} from './DirectionArrows'
 
 export {
   Button,
@@ -13,5 +14,6 @@ export {
   CustomIcon,
   CustomInput,
   PlusMinus,
-  RatingContainer
+  RatingContainer,
+  DirectionArrows
 };

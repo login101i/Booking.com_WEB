@@ -23,6 +23,7 @@ const ButtonContainer = styled.button`
   cursor: pointer;
   color: ${(props) => (props.color ? props.color : "black")};
   border-radius: ${(props) => (props.radius ? props.radius : "")};
+  font-size: 20px;
 `;
 export const Button = ({
   backGrWhite,

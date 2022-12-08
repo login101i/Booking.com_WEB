@@ -13,13 +13,7 @@ const Single = () => {
   const path = location.pathname.slice("/");
 
   const { data, loading, error } = useFetch(`${path}`);
-  console.log(
-    "%cMyProject%cline:15%cdata",
-    "color:#fff;background:#ee6f57;padding:3px;border-radius:2px",
-    "color:#fff;background:#1f3c88;padding:3px;border-radius:2px",
-    "color:#fff;background:rgb(252, 157, 154);padding:3px;border-radius:2px",
-    data
-  );
+  
 
   return (
     <div className="single">
