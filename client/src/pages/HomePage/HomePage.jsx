@@ -2,7 +2,6 @@ import { Navbar } from '../../components/Navbar/Navbar';
 import { Header } from '../../components/Header/Header';
 import { Flex } from '../../sharedComponents';
 import { FeaturedList, FooterInfo1, FooterInfo2, MailList, FeaturedHotels } from '../../components';
-import useFetch from '../../hooks/useFetch';
 import { Container } from './HomePage.styles';
 
 export const HomePage = () => {

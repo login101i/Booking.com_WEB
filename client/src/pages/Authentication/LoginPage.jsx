@@ -7,6 +7,7 @@ import phoneIcon from '../../assets/phone-success-icon.PNG';
 import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useFetch } from '../../hooks/useFetch';
 
 export const LoginPage = () => {
 	const [credentials, setCredentials] = useState({
@@ -20,14 +21,14 @@ export const LoginPage = () => {
 	const handleChange = e => {
 		setCredentials(prev => ({ ...prev, [e.target.id]: e.target.value }));
 	};
-	console.log(user);
 
 	const handleClick = async e => {
 		e.preventDefault();
 		dispatch({ type: 'LOGIN_START' });
 		console.log(credentials);
 		try {
-			const res = await axios.post('api/auth/login', credentials);
+			const res = await axios.post('auth/login', credentials);
+			console.log(res);
 
 			dispatch({ type: 'LOGIN_SUCCESS', payload: res.data.details.username });
 			navigate('/');
@@ -63,10 +64,10 @@ export const LoginPage = () => {
 					<h2>Zaloguj się lub utwórz konto</h2>
 					<div className='form'>
 						<label htmlFor='email' className='form-label'>
-							username
+							username:   Maciej09,   password: 123
 						</label>
 
-						<input type='text' placeholder='username' id='username' onChange={handleChange} className='form-input' />
+						<input type='text' placeholder='username' id='username' onChange={handleChange} className='form-input'  />
 						<input type='password' placeholder='password' id='password' onChange={handleChange} className='form-input' />
 
 						<button disabled={loading} className='form-btn' onClick={handleClick}>

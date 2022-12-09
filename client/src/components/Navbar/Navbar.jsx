@@ -4,10 +4,24 @@ import { Link } from 'react-router-dom';
 import { Button, Text, CustomIcon } from '../../sharedComponents';
 import { AuthContext } from '../../context/AuthContext';
 import { MainContainer, Container, LogoContainer, ButtonsContainer, PolandFlag, RedColor } from './Navbar.styles';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
-	const { user } = useContext(AuthContext);
-	console.log(user);
+	const { user, dispatch } = useContext(AuthContext);
+	const navigate = useNavigate();
+
+	const handleLogout = async e => {
+		e.preventDefault();
+		try {
+			await axios.put('auth/logout');
+			dispatch({ type: 'LOGOUT' });
+			navigate('/login');
+		} catch (err) {
+			console.log('Logout error', err);
+		}
+	};
+
 	return (
 		<MainContainer>
 			<Container>
@@ -28,7 +42,13 @@ export const Navbar = () => {
 					</PolandFlag>
 					<Button color='white'>Udostępnij obiekt</Button>
 					{user ? (
-						<Text white>Witaj {user.username} !</Text>
+						<>
+							{' '}
+							<Text white>Witaj {user} !</Text>
+							<Button backGrWhite onClick={handleLogout}>
+								Wyloguj się
+							</Button>
+						</>
 					) : (
 						<>
 							<Button backGrWhite>Zarejestruj się</Button>

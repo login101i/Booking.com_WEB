@@ -11,7 +11,6 @@ export const FeaturedList = ({
 	fetch,
 }) => {
 	const { data, loading } = useFetch(fetch);
-	console.log(data);
 
 	const poland = title.includes('Polska');
 

@@ -11,8 +11,8 @@ import hotelsRoute from './routes/hotels.js';
 import roomsRoute from './routes/rooms.js';
 import adminRoute from './routes/admin.js';
 
-const app = express();
 dotenv.config();
+const app = express();
 
 const connect = async () => {
 	try {

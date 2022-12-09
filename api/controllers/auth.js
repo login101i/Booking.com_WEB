@@ -27,19 +27,22 @@ export const login = async (req, res, next) => {
 		if (!user) return next(createError(404, 'User not found!'));
 
 		const isPasswordCorrect = await bcrypt.compare(req.body.password, user.password);
-		console.log('logowanie controller -----------');
 		if (!isPasswordCorrect) return next(createError(400, 'Wrong password or username!'));
 
-		const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.JWT);
+		const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.JWT, { expiresIn: process.env.JWT_EXPIRES_TIME });
+		console.log(token);
+
+		// Options for cookie
+		const options = {
+			expires: new Date(Date.now() + process.env.COOKIE_EXPIRES_TIME * 24 * 60 * 60 * 1000),
+			httpOnly: true,
+		};
 
 		const { password, isAdmin, ...otherDetails } = user._doc;
 		res
-			.cookie('access_token', token, {
-				httpOnly: true,
-			})
+			.cookie('access_token', token, options)
 			.status(200)
 			.json({ details: { ...otherDetails }, isAdmin });
-		console.log('-x-oooooox');
 	} catch (err) {
 		next(err);
 	}
