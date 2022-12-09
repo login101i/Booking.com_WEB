@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import Checkbox from '@mui/material/Checkbox';
 import BedIcon from '@mui/icons-material/Bed';
 import PersonIcon from '@mui/icons-material/Person';
@@ -8,7 +7,6 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import MapIcon from '@mui/icons-material/Map';
-import { useFetch } from '../../hooks/useFetch';
 
 import { format } from 'date-fns';
 

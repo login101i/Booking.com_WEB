@@ -1,19 +1,10 @@
-import { Button } from "./Button";
-import { Flex } from "./Flex";
-import { Text } from "./Text";
-import { CustomIcon } from "./CustomIcon";
-import { CustomInput } from "./CustomInput";
-import { PlusMinus } from "./PlusMinus";
-import { RatingContainer } from "./RatingContainer";
-import {DirectionArrows} from './DirectionArrows'
+import { Button } from './Button/Button';
+import { Flex } from './Flex/Flex';
+import { Text } from './Text/Text';
+import { CustomIcon } from './CustomIcon/CustomIcon';
+import { CustomInput } from './CustomInput/CustomInput';
+import { PlusMinus } from './PlusMinus/PlusMinus';
+import { RatingContainer } from './RattingContainer/RatingContainer';
+import { DirectionArrows } from './DirectionArrows/DirectionArrows';
 
-export {
-  Button,
-  Flex,
-  Text,
-  CustomIcon,
-  CustomInput,
-  PlusMinus,
-  RatingContainer,
-  DirectionArrows
-};
+export { Button, Flex, Text, CustomIcon, CustomInput, PlusMinus, RatingContainer, DirectionArrows };

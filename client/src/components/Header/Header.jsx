@@ -48,7 +48,7 @@ export const Header = ({ type }) => {
 				<HeaderItemContainer onClick={() => setActive('Loty')} active={active === 'Loty'}>
 					<Text white>
 						<CustomIcon icon={AirplanemodeActiveIcon} color='white' />
-						Loty
+						Lot
 					</Text>
 				</HeaderItemContainer>
 
@@ -67,7 +67,7 @@ export const Header = ({ type }) => {
 				<HeaderItemContainer onClick={() => setActive('Taksówki')} active={active === 'Taksówki'}>
 					<Text white>
 						<CustomIcon icon={RemoveRedEyeIcon} color='white' />
-						Taksówki lotniskowe
+						Taksówki na lotnisku
 					</Text>
 				</HeaderItemContainer>
 			</Flex>
