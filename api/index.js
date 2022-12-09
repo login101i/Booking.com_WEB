@@ -44,14 +44,14 @@ app.use('/api/hotels', hotelsRoute);
 app.use('/api/rooms', roomsRoute);
 app.use('/api/admin', adminRoute);
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.resolve();
+console.log(__dirname);
 
 if (process.env.NODE_ENV === 'PRODUCTION') {
-	app.use(express.static(path.join(__dirname, '../client/build')));
+	app.use(express.static(path.join(__dirname, '/client/build')));
 
 	app.get('*', (req, res) => {
-		res.sendFile(path.resolve(__dirname, '../client/build/index.html'));
+		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 	});
 }
 
