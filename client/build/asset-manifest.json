@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0a1282bd.chunk.css",
+    "main.js": "/static/js/main.c0d13225.chunk.js",
+    "main.js.map": "/static/js/main.c0d13225.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.7de790ca.js",
+    "runtime-main.js.map": "/static/js/runtime-main.7de790ca.js.map",
+    "static/css/2.da181bfb.chunk.css": "/static/css/2.da181bfb.chunk.css",
+    "static/js/2.f0537567.chunk.js": "/static/js/2.f0537567.chunk.js",
+    "static/js/2.f0537567.chunk.js.map": "/static/js/2.f0537567.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.da181bfb.chunk.css.map": "/static/css/2.da181bfb.chunk.css.map",
+    "static/css/main.0a1282bd.chunk.css.map": "/static/css/main.0a1282bd.chunk.css.map",
+    "static/js/2.f0537567.chunk.js.LICENSE.txt": "/static/js/2.f0537567.chunk.js.LICENSE.txt",
+    "static/media/booking-logo.e8ebd4e6.PNG": "/static/media/booking-logo.e8ebd4e6.PNG",
+    "static/media/facebook-icon.c74466c3.PNG": "/static/media/facebook-icon.c74466c3.PNG",
+    "static/media/google-icon.064a97e8.PNG": "/static/media/google-icon.064a97e8.PNG",
+    "static/media/phone-success-icon.e116ffe3.PNG": "/static/media/phone-success-icon.e116ffe3.PNG"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7de790ca.js",
+    "static/css/2.da181bfb.chunk.css",
+    "static/js/2.f0537567.chunk.js",
+    "static/css/main.0a1282bd.chunk.css",
+    "static/js/main.c0d13225.chunk.js"
+  ]
+}
