@@ -13,7 +13,7 @@ import hotelsRoute from './routes/hotels.js';
 import roomsRoute from './routes/rooms.js';
 import adminRoute from './routes/admin.js';
 
-if (process.env.NODE_ENV === 'PRODUCTION') dotenv.config({ path: 'api/config.env' });
+if (process.env.NODE_ENV !== 'PRODUCTION') dotenv.config({ path: 'api/config.env' });
 const app = express();
 
 const connect = async () => {
