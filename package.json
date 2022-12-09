@@ -12,7 +12,8 @@
 		"start": "nodemon api/index.js",
 		"dev": "SET NODE_ENV=DEVELOPMENT& nodemon api/index.js",
 		"prod": "SET NODE_ENV=PRODUCTION& nodemon api/index.js",
-		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix client && npm run build --prefix client"
+		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix client && npm run build --prefix client",
+		"postinstall": "ng build"
 	},
 	"keywords": [],
 	"author": "Maciej Kruszyniak login101i",
