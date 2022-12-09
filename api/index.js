@@ -5,7 +5,6 @@ import colors from 'colors';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
 import authRoute from './routes/auth.js';
 import usersRoute from './routes/users.js';
@@ -13,7 +12,7 @@ import hotelsRoute from './routes/hotels.js';
 import roomsRoute from './routes/rooms.js';
 import adminRoute from './routes/admin.js';
 
-if (process.env.NODE_ENV !== 'PRODUCTION') dotenv.config({ path: 'api/config.env' });
+if (process.env.NODE_ENV === 'PRODUCTION') dotenv.config({ path: 'api/config.env' });
 const app = express();
 
 const connect = async () => {
@@ -44,7 +43,6 @@ app.use('/api/hotels', hotelsRoute);
 app.use('/api/rooms', roomsRoute);
 app.use('/api/admin', adminRoute);
 
-
 const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === 'PRODUCTION') {
@@ -66,8 +64,7 @@ app.use((err, req, res, next) => {
 	});
 });
 
-const port = 8800;
-app.listen(process.env.PORT || 8800, () => {
+app.listen(process.env.PORT || 8801, () => {
 	connect();
-	console.log(`Connected to backend on port ${port} on ${process.env.NODE_ENV} mode`.blue);
+	console.log(`Connected to backend on port ${process.env.PORT} on ${process.env.NODE_ENV} mode`.blue);
 });
