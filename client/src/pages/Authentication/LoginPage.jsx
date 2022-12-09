@@ -84,7 +84,8 @@ export const LoginPage = () => {
 								</div>
 							</a>
 							<a href='#' className='link'>
-								<div className='link-icon'>s
+								<div className='link-icon'>
+									s
 									<img src={googleIcon} alt='' />
 								</div>
 							</a>
