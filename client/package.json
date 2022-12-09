@@ -1,6 +1,6 @@
 {
 	"name": "new",
-  "homepage": "https://myapp.herokuapp.com/",
+	"homepage": "https://bookingcmkrus.herokuapp.com/",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {

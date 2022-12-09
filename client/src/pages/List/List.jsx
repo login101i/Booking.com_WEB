@@ -49,6 +49,7 @@ export const List = ({ route }) => {
 	const [destination, setDestination] = useState(location.state.destination);
 
 	const { data, loading, error, reFetch } = useFetch(`/hotels?city=${destination}&min=${min || 0}&max=${max || 1000}`);
+	console.log(data);
 
 	const handleSearch = () => {
 		reFetch();
