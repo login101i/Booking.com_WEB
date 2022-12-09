@@ -67,7 +67,7 @@ app.use((err, req, res, next) => {
 });
 
 const port = 8800;
-app.listen(port, () => {
+app.listen((process.env.PORT || 8800), () => {
 	connect();
 	console.log(`Connected to backend on port ${port} on ${process.env.NODE_ENV} mode`.blue);
 });
