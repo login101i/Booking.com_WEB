@@ -69,7 +69,6 @@ export const DirectionArrows = ({ children, style }) => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   const handleClick = (direction) => {
-    console.log(slideIndex);
     if (direction === "left") {
       setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 0);
     } else {

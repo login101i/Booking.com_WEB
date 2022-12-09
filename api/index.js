@@ -4,6 +4,8 @@ import mongoose from 'mongoose';
 import colors from 'colors';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 import authRoute from './routes/auth.js';
 import usersRoute from './routes/users.js';
@@ -11,7 +13,7 @@ import hotelsRoute from './routes/hotels.js';
 import roomsRoute from './routes/rooms.js';
 import adminRoute from './routes/admin.js';
 
-dotenv.config();
+if (process.env.NODE_ENV !== 'PRODUCTION') dotenv.config({ path: 'api/config.env' });
 const app = express();
 
 const connect = async () => {
@@ -42,6 +44,17 @@ app.use('/api/hotels', hotelsRoute);
 app.use('/api/rooms', roomsRoute);
 app.use('/api/admin', adminRoute);
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+console.log(__dirname)
+
+if (process.env.NODE_ENV === 'PRODUCTION') {
+	app.use(express.static(path.join(__dirname, '../client/build')));
+
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, '../client/build/index.html'));
+	});
+}
 app.use((err, req, res, next) => {
 	const errorStatus = err.status || 500;
 	const errorMessage = err.message || 'Something went wrong!'.red;
@@ -56,5 +69,5 @@ app.use((err, req, res, next) => {
 const port = 8800;
 app.listen(port, () => {
 	connect();
-	console.log(`Connected to backend on port ${port}`.blue);
+	console.log(`Connected to backend on port ${port} on ${process.env.NODE_ENV} mode`.blue);
 });

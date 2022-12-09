@@ -25,7 +25,6 @@ export const LoginPage = () => {
 	const handleClick = async e => {
 		e.preventDefault();
 		dispatch({ type: 'LOGIN_START' });
-		console.log(credentials);
 		try {
 			const res = await axios.post('auth/login', credentials);
 			console.log(res);
@@ -64,10 +63,10 @@ export const LoginPage = () => {
 					<h2>Zaloguj się lub utwórz konto</h2>
 					<div className='form'>
 						<label htmlFor='email' className='form-label'>
-							username:   Maciej09,   password: 123
+							username: Maciej09, password: 123
 						</label>
 
-						<input type='text' placeholder='username' id='username' onChange={handleChange} className='form-input'  />
+						<input type='text' placeholder='username' id='username' onChange={handleChange} className='form-input' />
 						<input type='password' placeholder='password' id='password' onChange={handleChange} className='form-input' />
 
 						<button disabled={loading} className='form-btn' onClick={handleClick}>
@@ -85,7 +84,7 @@ export const LoginPage = () => {
 								</div>
 							</a>
 							<a href='#' className='link'>
-								<div className='link-icon'>
+								<div className='link-icon'>s
 									<img src={googleIcon} alt='' />
 								</div>
 							</a>
