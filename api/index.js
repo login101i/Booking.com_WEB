@@ -13,7 +13,7 @@ import hotelsRoute from './routes/hotels.js';
 import roomsRoute from './routes/rooms.js';
 import adminRoute from './routes/admin.js';
 
-if (process.env.NODE_ENV !== 'PRODUCTION') dotenv.config({ path: 'api/config.env' });
+if (process.env.NODE_ENV === 'PRODUCTION') dotenv.config({ path: 'api/config.env' });
 const app = express();
 
 const connect = async () => {
@@ -46,7 +46,6 @@ app.use('/api/admin', adminRoute);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-console.log(__dirname);
 
 if (process.env.NODE_ENV === 'PRODUCTION') {
 	app.use(express.static(path.join(__dirname, '../client/build')));
@@ -67,7 +66,7 @@ app.use((err, req, res, next) => {
 });
 
 const port = 8800;
-app.listen((process.env.PORT || 8800), () => {
+app.listen(process.env.PORT || 8800, () => {
 	connect();
 	console.log(`Connected to backend on port ${port} on ${process.env.NODE_ENV} mode`.blue);
 });
