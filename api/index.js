@@ -13,7 +13,7 @@ import hotelsRoute from './routes/hotels.js';
 import roomsRoute from './routes/rooms.js';
 import adminRoute from './routes/admin.js';
 
-if (process.env.NODE_ENV === 'PRODUCTION') dotenv.config({ path: 'api/config.env' });
+if (process.env.NODE_ENV !== 'PRODUCTION') dotenv.config({ path: 'api/config.env' });
 const app = express();
 
 const connect = async () => {
@@ -48,16 +48,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 if (process.env.NODE_ENV === 'PRODUCTION') {
-	app.use(express.static(path.join(__dirname, '/client/build/index.html')));
+	app.use(express.static(path.join(__dirname, '../client/build')));
 
 	app.get('*', (req, res) => {
-		res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
-	});
-} else {
-	app.get('/', (req, res) => {
-		res.send('API is running .........');
+		res.sendFile(path.resolve(__dirname, '../client/build/index.html'));
 	});
 }
+
 app.use((err, req, res, next) => {
 	const errorStatus = err.status || 500;
 	const errorMessage = err.message || 'Something went wrong!'.red;
