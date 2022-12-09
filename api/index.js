@@ -12,11 +12,7 @@ import hotelsRoute from './routes/hotels.js';
 import roomsRoute from './routes/rooms.js';
 import adminRoute from './routes/admin.js';
 
-<<<<<<< HEAD
 if (process.env.NODE_ENV === 'PRODUCTION') dotenv.config({ path: 'api/config.env' });
-=======
-if (process.env.NODE_ENV !== 'PRODUCTION') dotenv.config({ path: 'api/config.env' });
->>>>>>> 94d1d703e65dfa7ad27856f96b1ebbb3fa5e2527
 const app = express();
 
 const connect = async () => {
@@ -46,7 +42,6 @@ app.use('/api/users', usersRoute);
 app.use('/api/hotels', hotelsRoute);
 app.use('/api/rooms', roomsRoute);
 app.use('/api/admin', adminRoute);
-
 
 const __dirname = path.resolve();
 
