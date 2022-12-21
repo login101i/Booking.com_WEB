@@ -6,17 +6,20 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { MainContainer, ImageContainer } from './ListResultItem.styles';
 
 import { Button, Flex, Text, CustomIcon, RatingContainer } from '../../sharedComponents';
+import { useMediaQuery } from 'react-responsive';
+import { screens } from '../../utils/screens';
 
 export const ListResultItem = ({ item }) => {
 	const { _id, name, type, city, address, distance, photos, title, desc, rating, rooms, cheapestPrice } = item;
 	const img =
 		'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/148981006.jpg?k=9166090226f0a31f52d948f49814c0db4f5b05868bfb8b0da0fbe04a8fba1301&o=&hp=1';
 	const navigate = useNavigate();
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
 	return (
-		<MainContainer>
-			<ImageContainer src={item.photos[0]} onClick={() => navigate('/hotels/find/1')} />
-			<Flex column margin='0px 20px' grow>
+		<MainContainer isMobile={isMobile}>
+			<ImageContainer src={item.photos[0]} onClick={() => navigate(`/hotels/find/${_id}`)} isMobile={isMobile} />
+			<Flex column margin={!isMobile && '0px 20px'} grow>
 				<Text uppercase>{item.name}</Text>
 				<Flex>
 					<Text capitalize>{city}</Text>
@@ -26,14 +29,16 @@ export const ListResultItem = ({ item }) => {
 				<Text backGr='green' white size='h8' marginBtm={3}>
 					Oferta limitowana
 				</Text>
-				<Flex height='120px'>
-					<Divider
-						orientation='vertical'
-						sx={{
-							color: 'white',
-						}}
-					/>
-					<Flex column margin='2px 10px'>
+				<Flex height='140px'>
+					{isMobile && (
+						<Divider
+							orientation={isMobile ? 'horizontal' : 'vertical'}
+							sx={{
+								color: 'green',
+							}}
+						/>
+					)}
+					<Flex column margin={!isMobile && '0px 20px'}>
 						<Text wrap color='secondary' size='h7'>
 							{desc.slice(0, 50)}... <br />
 							Na naszej stronie zostały tylko 1
@@ -79,6 +84,7 @@ export const ListResultItem = ({ item }) => {
 					color='white'
 					onClick={() => navigate(`/hotels/find/${_id}`)}
 					rightIcon={<CustomIcon icon={ChevronRightIcon} color='white' size={22} />}
+					margin='20px 0px'
 				/>
 			</Flex>
 		</MainContainer>

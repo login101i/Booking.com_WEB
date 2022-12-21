@@ -1,15 +1,29 @@
-import { Text, Flex } from '../../sharedComponents';
-import { MainContainer } from './ListOptionComponent.styles';
+import { useState } from 'react';
 
-export const ListOptionComponent = ({ title, children }) => {
+import { Text, Flex, CustomIcon } from '../../sharedComponents';
+import { MainContainer, Container } from './ListOptionComponent.styles';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { useMediaQuery } from 'react-responsive';
+import { screens } from '../../utils/screens';
+
+export const ListOptionComponent = ({ title, children, expanded }) => {
+		const isMobile = useMediaQuery({ maxWidth: screens.md });
+	const [isExpanded, setIsExpanded] = useState(!isMobile );
+
+	const handleExpanded = () => {
+		setIsExpanded(!isExpanded);
+	};
+
 	return (
-		<MainContainer>
-			<Flex column>
+		<MainContainer isMobile={isMobile}>
+			<Container>
 				<Text margin='0px 10px' bold>
 					{title}
 				</Text>
-				{children}
-			</Flex>
+				<CustomIcon icon={isExpanded ? KeyboardArrowUpIcon : ExpandMoreIcon} onClick={handleExpanded} />
+			</Container>
+			{isExpanded && children}
 		</MainContainer>
 	);
 };

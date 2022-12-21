@@ -17,6 +17,8 @@ import { UseComponentVisible } from '../../utils/UseComponentVisible';
 import { ListOptionComponent } from '../ListOptionComponent/ListOptionComponent';
 import { ListOptionItem } from '../ListOptionItem/ListOptionItem';
 import { Container, Shadow } from './ListSearch.styles';
+import { useMediaQuery } from 'react-responsive';
+import { screens } from '../../utils/screens';
 
 export const ListSearch = ({ location, setMin, setMax, handleSearch, setDestination }) => {
 	const destination = useState(location.state.destination);
@@ -24,6 +26,7 @@ export const ListSearch = ({ location, setMin, setMax, handleSearch, setDestinat
 	const [openOptions, setOpenOptions] = useState();
 	const [showStartDate, setShowStartDate] = useState();
 	const [showEndDate, setShowEndDate] = useState();
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
 	const [options, setOptions] = useState({
 		adult: data.options.adult,
@@ -42,7 +45,7 @@ export const ListSearch = ({ location, setMin, setMax, handleSearch, setDestinat
 
 	return (
 		<div ref={ref}>
-			<Container>
+			<Container isMobile={isMobile}>
 				<Text size='h5'>Szukaj</Text>
 				<Text size='h8' margin='0px 0px 10px 0px'>
 					Cel podróży / nazwa obiektu

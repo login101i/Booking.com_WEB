@@ -1,9 +1,13 @@
+import { useMediaQuery } from 'react-responsive';
 import { Text } from '../../sharedComponents';
 import { MainContainer, Image, TextContainer } from './featured.styles';
+import { screens } from '../../utils/screens';
 
 export const Featured = ({ img, city, availableHotels }) => {
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
+
 	return (
-		<MainContainer>
+		<MainContainer isMobile={isMobile}>
 			{!city ? (
 				'Loading'
 			) : (

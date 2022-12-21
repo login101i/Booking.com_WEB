@@ -2,7 +2,7 @@ import { useMediaQuery } from 'react-responsive';
 import { useFetch } from '../../hooks/useFetch';
 import { Text, DirectionArrows } from '../../sharedComponents';
 import { FeaturedItem } from '../FeaturedItem/FeaturedItem';
-import { MainContainer, Container } from './FeaturedList.styles';
+import { MainContainer, Container, OpacityContainer } from './FeaturedList.styles';
 import { screens } from '../../utils/screens';
 
 export const FeaturedList = ({
@@ -30,34 +30,33 @@ export const FeaturedList = ({
 				'loading '
 			) : (
 				<>
-					<Text size={isMobile ? "h6" : "h3"} marginBtm={2} wrap="true">
+					<Text size={isMobile ? 'h6' : 'h3'} wrap='true'>
 						{title}
 					</Text>
-					<DirectionArrows>
-						<Container isMobile={isMobile}>
-							{data &&
-								images.map((img, index) => (
-									<FeaturedItem
-										img={data.objects ? data.objects?.[index][0]?.photos[0] : img}
-										availableNumber={fetch.includes('cities') ? null : data[index]?.city ? null : data[index]?.count}
-										type={fetch.includes('cities') ? null : data.objects?.[index]?.city ? null : data[index]?.type}
-										key={index}
-										rating={fetch.includes('cities') ? data.objects?.[index][0]?.rating : data[index]?.rating ? data[index]?.rating : null}
-										title={poland ? data.objects?.[index][0]?.city : data.objects ? data.objects?.[index][index]?.name : null}
-										price={
-											fetch.includes('cities')
-												? data.objects?.[index][0]?.cheapestPrice
-												: data[index]?.cheapestPrice
-												? data[index]?.cheapestPrice
-												: null
-										}
-										poland={poland}
-									/>
-								))}
-						</Container>
-					</DirectionArrows>
+					<Container>
+						{data &&
+							images.map((img, index) => (
+								<FeaturedItem
+									img={data.objects ? data.objects?.[index][0]?.photos[0] : img}
+									availableNumber={fetch.includes('cities') ? null : data[index]?.city ? null : data[index]?.count}
+									type={fetch.includes('cities') ? null : data.objects?.[index]?.city ? null : data[index]?.type}
+									key={index}
+									rating={fetch.includes('cities') ? data.objects?.[index][0]?.rating : data[index]?.rating ? data[index]?.rating : null}
+									title={poland ? data.objects?.[index][0]?.city : data.objects ? data.objects?.[index][index]?.name : null}
+									price={
+										fetch.includes('cities')
+											? data.objects?.[index][0]?.cheapestPrice
+											: data[index]?.cheapestPrice
+											? data[index]?.cheapestPrice
+											: null
+									}
+									poland={poland}
+								/>
+							))}
+					</Container>
 				</>
 			)}
+			<OpacityContainer />
 		</MainContainer>
 	);
 };

@@ -9,6 +9,9 @@ export const Container = styled.div`
 	background-color: orange;
 	padding: 10px 20px;
 	border-radius: 10px;
+
+	width: ${props => (props.isMobile ? 'calc(100vw-40px)' : '100%')};
+	margin: ${props => (props.isMobile ? '0px 20px;' : '')};
 `;
 
 export const Shadow = styled.div`

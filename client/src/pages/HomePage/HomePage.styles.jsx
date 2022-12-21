@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const HomeContainer = styled.div`
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+`;
 export const Container = styled.div`
 	width: 100%;
 	background-color: ${({ theme }) => theme.colors.primary};

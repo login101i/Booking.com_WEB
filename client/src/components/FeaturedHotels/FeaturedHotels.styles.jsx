@@ -6,7 +6,8 @@ export const FeaturedContainer = styled.div`
 	flex-direction: ${props => (props.isMobile ? 'column' : 'row')};
 	align-items: center;
 	display: flex;
-	margin-top: 100px;
+	margin-top: ${props => (props.isMobile ? '70px' : '100px')};
 	gap: 20px;
 	margin-bottom: 50px;
+
 `;
