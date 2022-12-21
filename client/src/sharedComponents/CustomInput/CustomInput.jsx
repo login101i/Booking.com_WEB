@@ -17,11 +17,10 @@ export const CustomInput = ({
 	border,
 	onChange,
 	onKeyDown,
-
 	children,
 }) => {
 	return (
-		<MainContainer backGr={backGr} onClick={onClick} border={border}>
+		<MainContainer backGr={backGr} onClick={onClick} border={border} center={center}>
 			<LeftContainer>{leftIcon}</LeftContainer>
 			<Container
 				borderRadius={borderRadius}

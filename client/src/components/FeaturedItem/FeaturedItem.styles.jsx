@@ -1,5 +1,4 @@
-import styled from 'styled-components'
-
+import styled from 'styled-components';
 
 export const MainContainer = styled.div`
 	overflow: hidden;
@@ -16,8 +15,8 @@ export const MainContainer = styled.div`
 
 export const ImageContainer = styled.div`
 	overflow: hidden;
-	height: 200px;
-	max-width: 200px;
+	height: ${props => (props.isMobile ? '400px' : '200px')};
+	max-width: 330px;
 `;
 export const Image = styled.img`
 	object-fit: cover;

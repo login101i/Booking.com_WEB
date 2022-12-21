@@ -1,11 +1,11 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const MainContainer = styled.div`
 	position: relative;
 	border: ${props => (props.border ? `3px solid ${props.border}` : '3px solid orange')};
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: ${props => (props.center ? 'center' : 'flex-start')};
 	padding: 0px 5px;
 	background-color: ${props => (props.backGr ? props.theme.colors[props.backGr] : 'white')};
 `;

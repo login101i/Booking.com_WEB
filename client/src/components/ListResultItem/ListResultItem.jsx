@@ -15,13 +15,13 @@ export const ListResultItem = ({ item }) => {
 
 	return (
 		<MainContainer>
-			<ImageContainer src={item.photos[0]} onClick={() => navigate('/hotel/1')} />
+			<ImageContainer src={item.photos[0]} onClick={() => navigate('/hotels/find/1')} />
 			<Flex column margin='0px 20px' grow>
 				<Text uppercase>{item.name}</Text>
 				<Flex>
 					<Text capitalize>{city}</Text>
 					<Text>Pokaż na mapie</Text>
-					<Text>{distance} m od cetrum</Text>
+					<Text>{distance} m od centrum</Text>
 				</Flex>
 				<Text backGr='green' white size='h8' marginBtm={3}>
 					Oferta limitowana

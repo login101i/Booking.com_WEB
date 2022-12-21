@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.div`
 	width: 100%;
@@ -14,8 +14,10 @@ export const Container = styled.div`
 export const InfoContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
+	flex-direction: ${props => (props.isMobile ? 'column' : 'row')};
 	gap: 20px;
 	width: 100%;
 	justify-content: space-evenly;
-	margin-top: 30px;
+	margin-top: 10px;
+	padding:20px;
 `;

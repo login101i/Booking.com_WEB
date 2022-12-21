@@ -22,7 +22,7 @@ export const LoginPage = () => {
 		setCredentials(prev => ({ ...prev, [e.target.id]: e.target.value }));
 	};
 
-	const handleClick = async e => {
+	const handleLogin = async e => {
 		e.preventDefault();
 		dispatch({ type: 'LOGIN_START' });
 		try {
@@ -67,7 +67,7 @@ export const LoginPage = () => {
 						<input type='text' placeholder='username' id='username' onChange={handleChange} className='form-input' />
 						<input type='password' placeholder='password' id='password' onChange={handleChange} className='form-input' />
 
-						<button disabled={loading} className='form-btn' onClick={handleClick}>
+						<button disabled={loading} className='form-btn' onClick={handleLogin}>
 							Kontynuuj za pomocą e-maila
 						</button>
 					</div>

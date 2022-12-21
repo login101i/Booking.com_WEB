@@ -2,9 +2,12 @@ import styled from 'styled-components';
 
 export const MainContainer = styled.div`
 	width: 100%;
-	margin: 0 auto;
+	margin-top: ${props => (props.isMobile ? '125px' : '0px auto')};
 	max-width: 1080px;
-	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: ${props => (props.isMobile ? 'center' : 'flex-start')};
+	justify-content: center;
 `;
 
 export const HeaderItemContainer = styled.div`

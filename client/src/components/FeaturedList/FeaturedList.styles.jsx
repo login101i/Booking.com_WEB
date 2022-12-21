@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const MainContainer = styled.div`
 	display: flex;
@@ -14,4 +14,5 @@ export const Container = styled.div`
 	display: flex;
 	gap: 20px;
 	width: 100%;
+	flex-direction: ${props => (props.isMobile ? 'column' : 'row')};
 `;

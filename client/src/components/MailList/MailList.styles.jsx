@@ -17,7 +17,8 @@ export const Container = styled.div`
 export const CheckBoxContainer = styled.div`
 	margin-top: 10px;
 	display: flex;
-	margin-left: -130px;
+	margin-left: ${props => (props.isMobile ? '0px' : '-130px')};
+	display: flex;
 `;
 
 export const FormComponent = styled.form``;

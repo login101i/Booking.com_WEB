@@ -1,7 +1,9 @@
+import { useMediaQuery } from 'react-responsive';
 import { useFetch } from '../../hooks/useFetch';
 import { Text, DirectionArrows } from '../../sharedComponents';
 import { FeaturedItem } from '../FeaturedItem/FeaturedItem';
 import { MainContainer, Container } from './FeaturedList.styles';
+import { screens } from '../../utils/screens';
 
 export const FeaturedList = ({
 	img = 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/148981006.jpg?k=9166090226f0a31f52d948f49814c0db4f5b05868bfb8b0da0fbe04a8fba1301&o=&hp=1',
@@ -11,6 +13,7 @@ export const FeaturedList = ({
 	fetch,
 }) => {
 	const { data, loading } = useFetch(fetch);
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
 	const poland = title.includes('Polska');
 
@@ -27,11 +30,11 @@ export const FeaturedList = ({
 				'loading '
 			) : (
 				<>
-					<Text size='h4' marginBtm={2}>
+					<Text size={isMobile ? "h6" : "h3"} marginBtm={2} wrap="true">
 						{title}
 					</Text>
 					<DirectionArrows>
-						<Container>
+						<Container isMobile={isMobile}>
 							{data &&
 								images.map((img, index) => (
 									<FeaturedItem

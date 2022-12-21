@@ -6,6 +6,8 @@ import { AuthContext } from '../../context/AuthContext';
 import { MainContainer, Container, LogoContainer, ButtonsContainer, PolandFlag, RedColor } from './Navbar.styles';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
+import { screens } from '../../utils/screens';
 
 export const Navbar = () => {
 	const { user, dispatch } = useContext(AuthContext);
@@ -22,9 +24,11 @@ export const Navbar = () => {
 		}
 	};
 
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
+
 	return (
-		<MainContainer>
-			<Container>
+		<MainContainer isMobile={isMobile}>
+			<Container isMobile={isMobile}>
 				<Link to='/'>
 					<LogoContainer>
 						<Text size='h4' white>
@@ -32,28 +36,38 @@ export const Navbar = () => {
 						</Text>
 					</LogoContainer>
 				</Link>
-				<ButtonsContainer>
-					<CustomIcon icon={HelpOutlineIcon} color='white' />
-					<Text title='true' uppercase white>
-						pln
-					</Text>
-					<PolandFlag>
-						<RedColor />
-					</PolandFlag>
-					<Button color='white'>Udostępnij obiekt</Button>
+				<ButtonsContainer isMobile={isMobile}>
+					{!isMobile && (
+						<>
+							<CustomIcon icon={HelpOutlineIcon} color='white' />
+							<Text title='true' uppercase white>
+								pln
+							</Text>
+							<PolandFlag>
+								<RedColor />
+							</PolandFlag>
+						</>
+					)}
+					<Button color='white' width={isMobile && '340px'}>
+						Udostępnij obiekt
+					</Button>
 					{user ? (
 						<>
 							{' '}
 							<Text white>Witaj {user} !</Text>
-							<Button backGrWhite onClick={handleLogout}>
+							<Button backGrWhite onClick={handleLogout} width={isMobile && '340px'}>
 								Wyloguj się
 							</Button>
 						</>
 					) : (
 						<>
-							<Button backGrWhite>Zarejestruj się</Button>
+							<Button backGrWhite width={isMobile && '340px'}>
+								Zarejestruj się
+							</Button>
 							<Link to='/login'>
-								<Button backGrWhite>Zaloguj się</Button>
+								<Button backGrWhite width={isMobile && '340px'}>
+									Zaloguj się
+								</Button>
 							</Link>
 						</>
 					)}

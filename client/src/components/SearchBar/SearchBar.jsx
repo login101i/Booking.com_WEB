@@ -14,6 +14,8 @@ import { Flex, CustomIcon, CustomInput } from '../../sharedComponents';
 import { useContext } from 'react';
 import { SearchContext } from '../../context/SearchContext';
 import { Shadow } from './SearchBar.styles';
+import { screens } from '../../utils/screens';
+import { useMediaQuery } from 'react-responsive';
 
 export const SearchBar = () => {
 	const [showDate, setShowDate] = useState();
@@ -35,6 +37,7 @@ export const SearchBar = () => {
 	const navigate = useNavigate();
 
 	const { dispatch } = useContext(SearchContext);
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
 	const handleSearch = () => {
 		dispatch({ type: 'NEW_SEARCH', payload: { destination, date, options } });
@@ -49,7 +52,7 @@ export const SearchBar = () => {
 
 	return (
 		<div ref={ref}>
-			<Flex>
+			<Flex column={isMobile} width='340px'>
 				<CustomInput
 					leftIcon={<CustomIcon color='grey' icon={BedIcon} />}
 					placeholder={destination ? 'Gdzie się wybierasz?' : destination}
@@ -89,7 +92,6 @@ export const SearchBar = () => {
 						)
 					}
 					width='200px'
-					center
 				/>
 
 				<CustomInput

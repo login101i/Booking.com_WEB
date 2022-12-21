@@ -1,10 +1,10 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const MainContainer = styled.div`
 	width: 100%;
 	height: 60px;
 	display: flex;
-	margin-left: 20px;
+	margin-left: ${props => (props.isMobile ? '0px' : '20px')};
 	max-width: 1080px;
 	margin-bottom: 16px;
 `;
@@ -13,6 +13,8 @@ export const Container = styled.div`
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
+	flex-direction: ${props => (props.isMobile ? 'column' : 'row')};
+	align-items: ${props => (props.isMobile ? 'center' : '')};
 `;
 export const LogoContainer = styled.div`
 	width: 200px;
@@ -22,10 +24,11 @@ export const LogoContainer = styled.div`
 `;
 
 export const ButtonsContainer = styled.div`
-	width: 80%;
+	width: ${props => (props.isMobile ? '100%' : '80%')};
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	flex-direction: ${props => (props.isMobile ? 'column' : 'row')};
 `;
 
 export const PolandFlag = styled.div`

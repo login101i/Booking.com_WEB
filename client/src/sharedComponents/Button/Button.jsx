@@ -1,7 +1,7 @@
 import { Flex } from '../Flex/Flex';
 import { ButtonContainer } from './Button.styles';
 
-export const Button = ({ backGrWhite, backGr, color, style, radius, title, rightIcon, margin, children, onClick }) => {
+export const Button = ({ backGrWhite, backGr, color, style, radius, title, rightIcon, margin, children, onClick, width }) => {
 	return (
 		<ButtonContainer
 			backGrWhite={backGrWhite}
@@ -12,6 +12,7 @@ export const Button = ({ backGrWhite, backGr, color, style, radius, title, right
 			rightIcon={rightIcon}
 			margin={margin}
 			onClick={onClick}
+			width={width}
 		>
 			<Flex center backGr='inherit'>
 				{' '}

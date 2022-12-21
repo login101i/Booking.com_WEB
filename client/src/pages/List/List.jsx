@@ -66,7 +66,7 @@ export const List = ({ route }) => {
 				<ListResultContainer>
 					{loading ? (
 						<Loader />
-					) : data.length == 0 ? (
+					) : data.length === 0 ? (
 						<Flex center>
 							<Text size='h5'>Nie znaleziono wyników. Spróbuj jeszcze raz.</Text>
 						</Flex>

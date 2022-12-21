@@ -1,10 +1,14 @@
+import { useMediaQuery } from 'react-responsive';
 import { useFetch } from '../../hooks/useFetch';
 import { Text } from '../../sharedComponents';
 import { Featured } from '../Featured/Featured';
 import { FeaturedContainer } from './FeaturedHotels.styles';
+import { screens } from '../../utils/screens';
 
 export const FeaturedHotels = () => {
 	const { data, loading } = useFetch('/hotels/countByCity?cities=poznań,kraków,warszawa');
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
+
 	return (
 		<>
 			{loading ? (
@@ -12,7 +16,7 @@ export const FeaturedHotels = () => {
 			) : (
 				<>
 					{data && (
-						<FeaturedContainer>
+						<FeaturedContainer isMobile={isMobile}>
 							<Featured
 								city='Poznań'
 								availableHotels={data.list?.[0]}
