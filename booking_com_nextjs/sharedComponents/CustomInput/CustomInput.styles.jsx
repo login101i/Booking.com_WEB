@@ -30,7 +30,6 @@ export const Container = styled.input`
 	white-space: ${props => (props.wrap ? 'wrap' : 'nowrap')};
 	background-color: inherit;
 
-
 	outline: none;
 	border: none;
 

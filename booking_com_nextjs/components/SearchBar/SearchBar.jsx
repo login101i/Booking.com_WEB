@@ -3,6 +3,7 @@ import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { format } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 import BedIcon from '@mui/icons-material/Bed';
 import PersonIcon from '@mui/icons-material/Person';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -15,7 +16,9 @@ import { SearchContext } from '../../context/SearchContext';
 import { Shadow } from './SearchBar.styles';
 import { screens } from '../../utils/screens';
 import { useMediaQuery } from 'react-responsive';
-import { useNavigate } from 'react-router-dom';
+
+import Link from 'next/link';
+import { getRoute } from 'next-type-safe-routes';
 
 export const SearchBar = () => {
 	const [showDate, setShowDate] = useState();
@@ -34,20 +37,30 @@ export const SearchBar = () => {
 	});
 	const [destination, setDestination] = useState('Gdzie się wybierasz ?');
 	const { ref, isComponentVisible, setIsComponentVisible } = UseComponentVisible(showDate && openOptions);
-	const navigate = useNavigate();
 
 	const { dispatch } = useContext(SearchContext);
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
 	const handleSearch = () => {
+		console.log('szukam');
 		dispatch({ type: 'NEW_SEARCH', payload: { destination, date, options } });
-		navigate('/hotels', {
-			state: {
-				destination,
-				date,
-				options,
+		getRoute({
+			route: "/login",
+			params: {
+				state: {
+					destination,
+					date,
+					options,
+				},
 			},
 		});
+		// navigate('/hotels', {
+		// 	state: {
+		// 		destination,
+		// 		date,
+		// 		options,
+		// 	},
+		// });
 	};
 
 	return (

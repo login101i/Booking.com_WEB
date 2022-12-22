@@ -3,14 +3,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { FooterInfo1, Navbar } from '../../components';
 import { Header } from '../../components/Header/Header';
-import { MailList } from '../../components';
 import { FooterInfo2 } from '../../components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { useFetch } from '../../hooks/useFetch';
 import { Loader } from '../../sharedComponents/Loader/Loader';
-
-import './hotel.css';
 import { SearchContext } from '../../context/SearchContext';
 import { AuthContext } from '../../context/AuthContext';
 import { Reserve } from '../../components';
@@ -65,6 +62,9 @@ export const Hotel = () => {
 	};
 	const { data, loading, error } = useFetch(`/api/hotels/find/62cbd0cb5b3594b5725d25ca`);
 
+	useEffect(() => {
+		console.log('hellooo');
+	}, [data]);
 	const { _id, name, type, city, address, distance, photos, title, desc, rating, rooms, cheapestPrice } = data;
 
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
